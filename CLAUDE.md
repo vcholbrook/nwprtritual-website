@@ -13,7 +13,10 @@ npm run dev       # Astro dev server (default :4321)
 npm run build     # Static build → dist/
 npm run preview   # Preview the built site locally
 npm run astro     # Astro CLI passthrough
+npm run deploy    # Build + publish dist/ to Cloudflare Pages (nwprtritual-website project)
 ```
+
+Deploy is direct-upload via wrangler — no Git-connected build on Cloudflare's side. One-time setup if running on a new machine: `npx wrangler login`.
 
 Node ≥22.12 required (see `package.json#engines`).
 
