@@ -1,0 +1,52 @@
+---
+const stats = [
+  { label: 'Women', value: '24' },
+  { label: 'Duration', value: '4 Days · 3 Nights' },
+  { label: 'Investment', value: 'TBD' },
+  { label: 'Application', value: 'By Selection' },
+];
+---
+
+<section class="bg-white text-nwprt-navy py-20 md:py-28">
+  <div class="max-w-5xl mx-auto w-full px-4 md:px-8">
+    <div class="scroll-reveal">
+      <div class="caption text-nwprt-navy/50 mb-3">The premise</div>
+      <h2 class="display text-4xl md:text-6xl text-nwprt-navy mb-6">What is NWPRT Ritual?</h2>
+      <div class="rule bg-nwprt-navy mb-10 opacity-40"></div>
+
+      <div class="space-y-6 text-lg md:text-xl leading-relaxed text-nwprt-navy/80">
+        <p>
+          NWPRT Ritual is a 4-day immersive wellness retreat in Newport Beach, California, designed
+          exclusively for women who are ready to understand their bodies at the deepest biological level.
+        </p>
+        <p>
+          This isn&rsquo;t a spa weekend or a conference. It&rsquo;s a full reset, grounded in your DNA,
+          your bloodwork, your wearable data, and the expertise of functional medicine practitioners who
+          actually listen.
+        </p>
+        <p>
+          You&rsquo;ll rotate through four expert-led pods, participate in coastal activities that restore
+          your nervous system, and leave Sunday with a 90-day personalized roadmap that finally makes
+          sense for <span class="accent-italic">your</span> body.
+        </p>
+      </div>
+
+      <div class="mt-12">
+        <div class="rule bg-nwprt-navy opacity-40 mb-8"></div>
+        <div class="bg-white border border-nwprt-navy/15 py-8 px-6 md:px-10">
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-10">
+            {stats.map((stat) => (
+              <div class="text-center border-l-2 border-nwprt-yellow/60 pl-4">
+                <div class="caption text-nwprt-navy/50 mb-2">{stat.label}</div>
+                <div class="display text-xl md:text-2xl text-nwprt-navy">{stat.value}</div>
+              </div>
+            ))}
+          </div>
+          <p class="text-xs text-nwprt-navy/50 text-center mt-4 italic">
+            Pricing currently being finalized based on our partner commitments
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

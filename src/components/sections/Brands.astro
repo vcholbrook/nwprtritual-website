@@ -1,0 +1,78 @@
+---
+interface Brand {
+  name: string;
+  subtitle: string;
+  description: string;
+  logo?: string;
+}
+
+const brands: Brand[] = [
+  {
+    name: 'NWPRT',
+    subtitle: 'The Lifestyle',
+    description: 'The brand that is Newport Beach. In the gift bag, on the morning walk, at the yacht dinner. The visual identity of a life well lived.',
+    logo: '/nwprt-logo-sm.png',
+  },
+  {
+    name: 'Halo',
+    subtitle: 'The Science',
+    description: 'Genomics, biomarkers, and wearables blended with functional medicine. Your complete biological picture: decoded, actionable, and finally yours.',
+    logo: '/halo-logo-sm.png',
+  },
+  {
+    name: 'Ritual',
+    subtitle: 'The Container',
+    description: "Where Halo's science and Newport's lifestyle collide. Four days that become the foundation for everything that follows.",
+  },
+];
+
+const journey = [
+  { location: 'Newport Beach', subtitle: 'The Foundation' },
+  { location: 'Napa / La Jolla', subtitle: 'The Reset' },
+  { location: 'Croatia', subtitle: 'The Odyssey' },
+];
+---
+
+<section class="bg-nwprt-navy text-nwprt-cream py-20 md:py-28 border-t border-nwprt-cream/10">
+  <div class="max-w-7xl mx-auto w-full px-4 md:px-8">
+    <div class="scroll-reveal mb-12">
+      <div class="caption text-nwprt-cream/50 mb-3">Behind the ritual</div>
+      <h2 class="display text-4xl md:text-6xl mb-6">The Brands</h2>
+      <div class="rule bg-nwprt-cream opacity-40"></div>
+    </div>
+
+    <div class="scroll-reveal grid md:grid-cols-3 gap-6">
+      {brands.map((brand) => (
+        <div class="relative border border-nwprt-cream/15 bg-nwprt-cream/[0.03] p-8 hover:bg-nwprt-cream/[0.06] transition-colors">
+          <div class="absolute top-6 right-6">
+            {brand.logo ? (
+              <img src={brand.logo} alt={`${brand.name} logo`} class="h-8 md:h-10 w-auto opacity-80" loading="lazy" />
+            ) : (
+              <div class="accent-italic text-3xl md:text-4xl text-nwprt-cream/40">Ritual</div>
+            )}
+          </div>
+          <h3 class="display text-2xl md:text-3xl mb-2 text-nwprt-cream pr-24">{brand.name}</h3>
+          <div class="accent-italic text-nwprt-cream/60 mb-5">{brand.subtitle}</div>
+          <p class="text-sm leading-relaxed text-nwprt-cream/70">{brand.description}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="scroll-reveal mt-20 text-center">
+      <div class="accent-italic text-xl md:text-2xl text-nwprt-cream/50 mb-8">The Journey</div>
+      <div class="flex flex-wrap justify-center items-center gap-6 md:gap-8">
+        {journey.map((stop, i) => (
+          <div class="flex items-center gap-6 md:gap-8">
+            <div class="text-center">
+              <div class="display text-xl md:text-2xl text-nwprt-cream">{stop.location}</div>
+              <div class="caption text-nwprt-cream/50 mt-2">{stop.subtitle}</div>
+            </div>
+            {i < journey.length - 1 && (
+              <span class="accent-italic text-nwprt-cream/40 text-2xl">&rarr;</span>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

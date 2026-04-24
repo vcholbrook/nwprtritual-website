@@ -1,0 +1,131 @@
+---
+interface Tier {
+  title: string;
+  price: string;
+  subtitle: string;
+  features: string[];
+  featured: boolean;
+}
+
+const tiers: Tier[] = [
+  {
+    title: 'Double Occupancy',
+    price: 'TBD',
+    subtitle: 'per person · shared room',
+    features: [
+      'Full retreat program',
+      'Shared private room · 3 nights',
+      'All meals included',
+      'Yacht dinner Saturday',
+      'All pod sessions and expert access',
+      'Curated gift bag',
+      'Spa pass (1 session)',
+      '90-day roadmap',
+      'Personal hypnosis audio',
+    ],
+    featured: false,
+  },
+  {
+    title: 'Single Occupancy',
+    price: 'TBD',
+    subtitle: 'per person · private room',
+    features: [
+      'Full retreat program',
+      'Private room · 3 nights',
+      'All meals included',
+      'Yacht dinner Saturday',
+      'All pod sessions and expert access',
+      'Curated gift bag and morning ritual kit',
+      'Pre-retreat prep box',
+      'Spa pass (1 session)',
+      '90-day personalized roadmap',
+      'Personal hypnosis audio',
+      'Future self letter at 30 days',
+    ],
+    featured: true,
+  },
+  {
+    title: 'Private Group',
+    price: 'TBD',
+    subtitle: 'flat fee · 12 women · full buyout',
+    features: [
+      'Entire retreat exclusively yours',
+      'Custom programming for your group',
+      'All single occupancy inclusions',
+      'Corporate teams, friend groups, wellness communities',
+      'You set the price for your group',
+    ],
+    featured: false,
+  },
+];
+
+const addOns = [
+  'Gut microbiome testing',
+  'Additional cortisol testing',
+  'Advanced hormone panels',
+  'Private chef dinners',
+  'One-on-one coaching sessions',
+  'Extended spa treatments',
+];
+---
+
+<section class="bg-nwprt-off-white text-nwprt-navy py-20 md:py-28">
+  <div class="max-w-7xl mx-auto w-full px-4 md:px-8">
+    <div class="scroll-reveal mb-12">
+      <div class="caption text-nwprt-navy/50 mb-3">The offering</div>
+      <h2 class="display text-4xl md:text-6xl text-nwprt-navy mb-6">The Investment</h2>
+      <div class="rule bg-nwprt-navy opacity-40 mb-8"></div>
+      <p class="accent-italic text-lg text-nwprt-navy/70">
+        All-inclusive. Nothing hidden. Everything intentional.
+      </p>
+    </div>
+
+    <div class="scroll-reveal grid lg:grid-cols-3 gap-6">
+      {tiers.map((tier) => {
+        const shell = tier.featured
+          ? 'bg-nwprt-navy text-nwprt-cream border-nwprt-navy'
+          : 'bg-nwprt-off-white text-nwprt-navy border-nwprt-navy/15';
+        const priceClass = tier.featured
+          ? 'display text-5xl md:text-6xl mb-1 text-nwprt-yellow'
+          : 'display text-5xl md:text-6xl mb-1';
+        const dashColor = tier.featured ? 'text-nwprt-yellow' : 'text-nwprt-navy/60';
+        const featureColor = tier.featured ? 'text-nwprt-cream/80' : 'text-nwprt-navy/80';
+        return (
+          <div class={`border p-8 md:p-10 text-center flex flex-col ${shell}`}>
+            <div class="caption mb-4 opacity-70">{tier.title}</div>
+            <div class={priceClass}>{tier.price}</div>
+            <div class="caption opacity-60 mb-8">{tier.subtitle}</div>
+            <ul class="text-left space-y-3 text-sm leading-relaxed">
+              {tier.features.map((feature) => (
+                <li class="flex gap-3 pb-3 border-b border-current/10 last:border-0 last:pb-0">
+                  <span class={`shrink-0 ${dashColor}`}>—</span>
+                  <span class={featureColor}>{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        );
+      })}
+    </div>
+
+    <p class="scroll-reveal text-xs text-nwprt-navy/50 text-center mt-8 italic max-w-2xl mx-auto">
+      Pricing currently being finalized based on our partner commitments
+    </p>
+
+    <div class="scroll-reveal mt-12 p-8 bg-nwprt-off-white grid md:grid-cols-2 gap-8">
+      <div>
+        <div class="caption text-nwprt-navy/60 mb-3">Additional diagnostics & add-ons</div>
+        <ul class="text-sm text-nwprt-navy/75 leading-relaxed space-y-2">
+          {addOns.map((item) => <li>— {item}</li>)}
+        </ul>
+        <p class="text-xs text-nwprt-navy/50 italic mt-3">Pricing varies. Reserved at application.</p>
+      </div>
+      <div>
+        <div class="caption text-nwprt-navy/60 mb-2">How to apply</div>
+        <p class="text-sm text-nwprt-navy/75 leading-relaxed">
+          Short application + 15-minute call with Amy. Selection confirmed within 48 hours. Limited to 24 women.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

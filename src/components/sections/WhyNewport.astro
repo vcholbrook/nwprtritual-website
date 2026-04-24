@@ -1,0 +1,65 @@
+---
+const locations = [
+  {
+    title: 'Newport Harbor',
+    description: 'One of the finest small boat harbors in the world. 9,000+ vessels. The yacht dinner backdrop that makes Saturday evening unforgettable.',
+  },
+  {
+    title: 'Crystal Cove',
+    description: 'Historic 1920s coastal cottages, 3.2 miles of natural seashore. Once the Hollywood elite getaway. Still magical.',
+  },
+  {
+    title: 'Pacific Coast Highway',
+    description: 'The iconic coastal ride. Saturday morning on bikes. Salt air, ocean views, 24 women finding their current.',
+  },
+  {
+    title: 'Fashion Island',
+    description: "Open-air luxury at the heart of Newport. The backdrop for the lifestyle you've earned and are learning to inhabit fully.",
+  },
+  {
+    title: 'Balboa Island',
+    description: '2.6 miles of waterfront charm. Boutiques, dining, the ferry. The kind of afternoon that makes everything feel possible.',
+  },
+  {
+    title: 'The Pacific',
+    description: 'Dolphins. Gray whales. 8 miles of coastline. A constant reminder: tides shift. So do we.',
+  },
+];
+---
+
+<section class="relative bg-white text-nwprt-navy py-20 md:py-28 overflow-hidden">
+  <div class="absolute inset-0">
+    <img
+      src="/nwprt-beachlife.jpg"
+      alt=""
+      aria-hidden="true"
+      class="w-full h-full object-cover"
+      loading="lazy"
+      width="1200"
+      height="630"
+    />
+    <div class="absolute inset-0 bg-white/85"></div>
+  </div>
+
+  <div class="max-w-7xl mx-auto w-full px-4 md:px-8 relative z-10">
+    <div class="scroll-reveal mb-12 max-w-2xl">
+      <div class="caption text-nwprt-navy/50 mb-3">The setting</div>
+      <h2 class="display text-4xl md:text-6xl text-nwprt-navy mb-6">Why Newport</h2>
+      <div class="rule bg-nwprt-navy opacity-40 mb-8"></div>
+      <p class="text-base md:text-lg text-nwprt-navy/70 leading-relaxed">
+        Newport Beach isn&rsquo;t just a setting. It&rsquo;s a state of mind. One of the world&rsquo;s
+        great small boat harbors. Eight miles of Pacific coastline. The kind of place that makes slowing
+        down feel like the most natural thing in the world.
+      </p>
+    </div>
+
+    <div class="scroll-reveal grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-nwprt-navy/15">
+      {locations.map((loc) => (
+        <div class="bg-white/90 backdrop-blur-sm p-7 hover:bg-white transition-colors border border-nwprt-navy/10">
+          <h3 class="display text-xl md:text-2xl text-nwprt-navy mb-3">{loc.title}</h3>
+          <p class="text-sm leading-relaxed text-nwprt-navy/70">{loc.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

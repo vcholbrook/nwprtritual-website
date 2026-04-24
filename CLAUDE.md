@@ -27,7 +27,7 @@ Deliberately **fully static**. No adapter, no functions, no runtime dynamic rout
 
 ### Brand system — NWPRT aesthetic
 
-Brand reference: `_design_documentation/nwprt-brand-style-guide.md`. That directory also holds the real NWPRT logo files and lifestyle/product photography — reach for those when porting placeholders. It is the source of truth for color, type, and voice. Key rules worth internalizing:
+Brand reference: `figma-turnover/_design_documentation/nwprt-brand-style-guide.md`. That directory holds the real NWPRT logo files and lifestyle/product photography — reach for those when porting placeholders. It is the source of truth for color, type, and voice. Key rules worth internalizing:
 
 - **Signature pairing: navy + patch yellow + cream.** Not navy and white — the cream matters.
 - **Yellow is a signature color, not a field color.** Reserve `bg-nwprt-yellow` for **at most one** hero accent per view (a badge, a CTA, a horizontal rule). Stacking yellow on yellow kills the signature.
@@ -50,11 +50,19 @@ Fonts loaded from Google Fonts via CSS `@import` in `global.css`: Oswald (displa
 - `src/components/Container.astro` — max-width gutter wrapper. Sizes: `sm | md | lg | xl`.
 - `src/components/Section.astro` — full-bleed tonal section. Tones: `cream | navy | off-white | yellow`. Remember the one-yellow-per-view rule.
 
-### Handoff sources in `_design_documentation/`
-- `nwprt-ritual.html` — original HTML reference from the Halo side.
-- `nwprt-ritual-reimagined.html` — standalone single-file preview of the current Astro build (regenerate by running `npm run build` then re-inlining CSS).
-- `nwprt-logo.png` / `nwprt-logo-blue.jpeg` / `nwprt-logo-sm.png` — official NWPRT marks. Prefer these over the Oswald type-stamp wordmark in the hero once the layout is finalized.
-- `nwprt-lifestyle-*.jpg`, `nwprt-hat-*.jpg`, `nwprt-eden.jpg`, `nwprt-events.jpg`, `nwprt-instore.jpg`, `nwprt-sharedcontent.jpg` — lifestyle photography to swap in for the Unsplash placeholder in the hero and any future photo slots.
+### Figma turnover is reference only — never import from it
+`figma-turnover/` is the Figma Make export (Vite + React + shadcn + MUI) from the design team. The `.tsx` components, `ui/` shadcn primitives, and `vite.config.ts` are never imported into the Astro build. Use it as the authoritative copy + layout reference; port section content into `src/components/sections/*.astro` by hand. When the design team ships a new turnover, diff against the current `figma-turnover/src/app/components/*.tsx` to see what changed, then port those section files.
+
+The turnover uses the **same brand tokens** this project already defines (`--color-nwprt-navy`, `--color-nwprt-yellow`, `--color-nwprt-cream`, `.display`, `.accent-italic`, `.caption`, `.rule`, `.rule-yellow`) — so direct class-name reuse works, no translation table needed.
+
+Artwork (logos, photography) lives at `figma-turnover/_design_documentation/`. Copy into `public/` when a section references an image.
+
+### Component layout
+- `src/components/SiteHeader.astro` — sticky navy header with logo.
+- `src/components/sections/*.astro` — one file per page section, imported flat into `src/pages/index.astro`. Content data (arrays, schedules, copy) lives inline at the top of each section file so copy tweaks don't require diving into components.
+- `src/scripts/scroll-reveal.ts` — the IntersectionObserver island wired from `index.astro` via `<script>import '../scripts/scroll-reveal.ts'</script>`.
+
+Interactive elements (e.g., the Agenda accordion) use native HTML primitives (`<details>`) first, with small vanilla JS scripts to add progressive enhancements. No React / no framework — keep it boring.
 
 When porting handoff HTML or Figma to `.astro`, **do not inline arbitrary hex values or arbitrary Tailwind values** (`bg-[#...]`, `text-[17px]`) just because the source uses them. Snap to the `--color-nwprt-*` tokens; if a value isn't close to anything, surface it and ask before extending.
 
