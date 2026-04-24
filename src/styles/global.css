@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500;1,600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  /* Core */
+  --color-nwprt-navy: #14213D;
+  --color-nwprt-yellow: #F4C430;
+  --color-nwprt-cream: #F0E9D2;
+
+  /* Accents */
+  --color-nwprt-red: #C23E3E;
+  --color-nwprt-olive: #4B5320;
+  --color-nwprt-sky: #A7C5D9;
+  --color-nwprt-pink: #F4B9C9;
+
+  /* Neutrals */
+  --color-nwprt-black: #0A0A0A;
+  --color-nwprt-off-white: #FDFCF7;
+  --color-nwprt-gray: #8A8A82;
+
+  /* Type roles */
+  --font-display: 'Oswald', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-accent: 'Playfair Display', serif;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-nwprt-navy);
+  background-color: var(--color-nwprt-cream);
+}
+
+/* Display type = condensed bold sans, all caps, tight tracking. */
+.display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+
+/* Italic serif editorial accent (small category labels etc). */
+.accent-italic {
+  font-family: var(--font-accent);
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* Eyebrow / caption utilities — small-caps tracking for category labels,
+   date chips, pod tags, etc. Brand guide uses italic serif at this scale,
+   so keep text-transform uppercase only when explicitly marking a caption. */
+.eyebrow {
+  font-family: var(--font-accent);
+  font-style: italic;
+  font-size: 0.875rem;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+}
+
+.caption {
+  font-family: var(--font-body);
+  font-size: 0.625rem;
+  line-height: 1;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* Flat horizontal rules. Use cream on navy, navy on cream. Yellow is
+   reserved for one signature moment per view — do not reach for .rule-yellow
+   casually. */
+.rule {
+  width: 3rem;
+  height: 2px;
+  background: currentColor;
+  opacity: 0.5;
+}
+
+.rule-yellow {
+  width: 3rem;
+  height: 2px;
+  background: var(--color-nwprt-yellow);
+}
+
+/* Fade-in-on-mount (hero only — everything below the fold uses scroll-reveal). */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.fade-in-delay-1 { animation-delay: 0.2s; }
+.fade-in-delay-2 { animation-delay: 0.3s; }
+.fade-in-delay-3 { animation-delay: 0.4s; }
+.fade-in-delay-4 { animation-delay: 0.5s; }
+.fade-in-delay-5 { animation-delay: 0.6s; }
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scroll-reveal — paired with the IntersectionObserver in scripts/scroll-reveal.ts */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-in,
+  .scroll-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    animation: none;
+  }
+}

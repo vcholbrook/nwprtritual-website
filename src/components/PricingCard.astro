@@ -1,0 +1,44 @@
+---
+interface Props {
+  tier: string;
+  price: string;
+  priceSub: string;
+  inclusions: string[];
+  featured?: boolean;
+  priceSize?: 'lg' | 'md';
+}
+
+const {
+  tier,
+  price,
+  priceSub,
+  inclusions,
+  featured = false,
+  priceSize = 'lg',
+} = Astro.props;
+
+const surface = featured
+  ? 'bg-nwprt-navy text-nwprt-cream border-nwprt-navy'
+  : 'bg-nwprt-off-white text-nwprt-navy border-nwprt-navy/15';
+
+const priceClasses = [
+  'display',
+  priceSize === 'lg' ? 'text-5xl md:text-6xl' : 'text-3xl md:text-4xl',
+  'mb-1',
+  featured ? 'text-nwprt-yellow' : 'text-nwprt-navy',
+].join(' ');
+---
+
+<div class={`border ${surface} p-8 md:p-10 text-center flex flex-col`}>
+  <div class="caption mb-4 opacity-70">{tier}</div>
+  <div class={priceClasses}>{price}</div>
+  <div class="caption opacity-60 mb-8">{priceSub}</div>
+  <ul class="text-left space-y-3 text-sm leading-relaxed">
+    {inclusions.map((line) => (
+      <li class="flex gap-3 pb-3 border-b border-current/10 last:border-0 last:pb-0">
+        <span class={featured ? 'text-nwprt-yellow shrink-0' : 'text-nwprt-navy/60 shrink-0'}>—</span>
+        <span class={featured ? 'text-nwprt-cream/80' : 'text-nwprt-navy/80'}>{line}</span>
+      </li>
+    ))}
+  </ul>
+</div>

@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NWPRT Ritual | Where Newport Meets Your Biology</title>
+  <meta name="description" content="A 4-day immersive wellness retreat in Newport Beach, California. DNA-driven health insights, expert-led pods, coastal activities, and a 90-day personalized roadmap. Limited to 24 women, by application only." />
+  <meta property="og:title" content="NWPRT Ritual | Where Newport Meets Your Biology" />
+  <meta property="og:description" content="A 4-day immersive wellness retreat in Newport Beach. DNA-driven insights, expert-led pods, coastal activities, and a 90-day personalized roadmap. 24 women, by application only." />
+  <meta property="og:image" content="https://gethalohealth.com/og-nwprt-ritual.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Reset & Base ──────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      color: #1A2E40;
+      background: #FAFAF8;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* ── Design Tokens ──────────────────────────────────── */
+    :root {
+      --navy: #1A2E40;
+      --navy-dark: #132230;
+      --gold: #CBB994;
+      --warm-grey: #e8e6e1;
+      --off-white: #FAFAF8;
+      --light-blue: #7FB3D5;
+      --serif: 'Merriweather', Georgia, serif;
+      --sans: 'Inter', system-ui, sans-serif;
+    }
+
+    /* ── Utility ────────────────────────────────────────── */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
+    .container-sm { max-width: 900px; margin: 0 auto; padding: 0 16px; }
+    .container-md { max-width: 1000px; margin: 0 auto; padding: 0 16px; }
+    .gold-rule { width: 48px; height: 2px; background: var(--gold); }
+    .gold-rule-wide { width: 64px; height: 2px; background: var(--gold); margin: 0 auto; }
+    .eyebrow {
+      font-size: 10px; line-height: 14px; letter-spacing: 0.2em;
+      text-transform: uppercase; font-weight: 600;
+    }
+    .eyebrow-lg {
+      font-size: 11px; line-height: 15px; letter-spacing: 0.2em;
+      text-transform: uppercase; font-weight: 600;
+    }
+    .caption {
+      font-size: 9px; line-height: 12px; letter-spacing: 0.2em;
+      text-transform: uppercase; font-weight: 700;
+    }
+
+    /* ── Scroll Reveal ──────────────────────────────────── */
+    .reveal {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+
+    /* ── 1. Hero ──────────────────────────────────────── */
+    .hero {
+      position: relative; min-height: 100vh; display: flex;
+      align-items: center; justify-content: center; overflow: hidden;
+      background: var(--navy); color: #fff;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(to bottom, rgba(26,46,64,0.95), rgba(26,46,64,0.90), rgba(26,46,64,0.95));
+    }
+    .hero-bg { position: absolute; inset: 0; }
+    .hero-bg img { width: 100%; height: 100%; object-fit: cover; opacity: 0.3; }
+    .hero-content {
+      position: relative; z-index: 2; text-align: center;
+      padding: 0 16px; max-width: 960px; margin: 0 auto;
+      animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .hero-title { font-family: var(--serif); font-size: 112px; font-weight: 300; letter-spacing: -0.02em; margin-bottom: 8px; }
+    .hero-subtitle { font-family: var(--serif); font-size: 36px; font-weight: 300; font-style: italic; color: rgba(255,255,255,0.9); margin-bottom: 40px; letter-spacing: 0.05em; }
+    .hero-stats {
+      background: rgba(26,46,64,0.4); backdrop-filter: blur(8px);
+      padding: 24px 32px; margin-bottom: 48px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px;
+    }
+    .hero-stat-label { color: var(--gold); margin-bottom: 8px; }
+    .hero-stat-value { font-family: var(--serif); font-size: 18px; font-weight: 300; }
+    .hero-tagline { font-family: var(--serif); font-size: 22px; font-weight: 300; font-style: italic; color: rgba(255,255,255,0.7); max-width: 500px; margin: 0 auto; }
+
+    /* ── 2. Experience ─────────────────────────────────── */
+    .experience { background: var(--navy); color: #fff; padding: 96px 16px; }
+    .experience h2 { font-family: var(--serif); font-size: 48px; font-weight: 300; margin-bottom: 8px; }
+    .experience h2 em { font-style: italic; color: var(--gold); }
+    .experience .prose { font-family: var(--serif); font-size: 20px; font-weight: 300; line-height: 1.8; color: rgba(255,255,255,0.9); }
+    .experience .prose p + p { margin-top: 24px; }
+    .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; margin-top: 64px; }
+    .stat-card { border-left: 2px solid var(--gold); padding-left: 24px; }
+    .stat-card .num { font-family: var(--serif); font-size: 48px; font-weight: 300; margin-bottom: 8px; }
+    .stat-card .label { color: var(--gold); }
+
+    /* ── 3. What is NWPRT Ritual ──────────────────────── */
+    .what-is { background: var(--warm-grey); padding: 96px 16px; }
+    .what-is h2 { font-family: var(--serif); font-size: 48px; font-weight: 300; color: var(--navy); }
+    .what-is h2 em { color: var(--gold); }
+    .what-is .prose { font-family: var(--serif); font-size: 20px; font-weight: 300; line-height: 1.8; color: #555; }
+    .what-is .prose p + p { margin-top: 24px; }
+
+    /* ── 4. This Is Personal ──────────────────────────── */
+    .personal { background: var(--navy); color: #fff; padding: 128px 16px; text-align: center; }
+    .personal h2 { font-family: var(--serif); font-size: 40px; font-weight: 300; margin-bottom: 64px; }
+    .personal h2 em { color: var(--gold); }
+    .personal .body { font-family: var(--serif); font-size: 18px; font-weight: 300; line-height: 1.8; color: rgba(255,255,255,0.9); text-align: left; max-width: 720px; margin: 0 auto; }
+    .personal .body p + p { margin-top: 32px; }
+    .personal .pull-gold { text-align: center; font-size: 28px; color: var(--gold); font-style: italic; }
+    .personal .pull-muted { text-align: center; font-size: 22px; color: rgba(255,255,255,0.7); font-style: italic; padding-top: 16px; }
+
+    /* ── 5. Agenda ─────────────────────────────────────── */
+    .agenda { background: #fff; padding: 96px 16px; }
+    .agenda h2 { font-family: var(--serif); font-size: 48px; font-weight: 300; color: var(--navy); }
+    .agenda h2 em { color: var(--gold); }
+    .agenda-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-top: 48px; }
+    .day-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 24px; }
+    .day-header h3 { font-family: var(--serif); font-size: 28px; font-weight: 300; color: var(--navy); }
+    .day-header span { color: var(--gold); }
+    .sched-item { display: flex; gap: 16px; padding: 12px 0; border-bottom: 1px solid #f3f3f3; }
+    .sched-item:last-child { border-bottom: none; }
+    .sched-time { color: var(--gold); flex-shrink: 0; width: 100px; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600; padding-top: 2px; }
+    .sched-session { font-size: 14px; font-weight: 300; color: #555; }
+    .sched-tag { display: inline-block; margin-top: 4px; padding: 2px 8px; border-radius: 4px; font-size: 9px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; }
+    .tag-shore { background: rgba(203,185,148,0.3); color: var(--navy); }
+    .tag-current { background: rgba(26,46,64,0.1); color: var(--navy); }
+    .tag-signal { background: rgba(203,185,148,0.25); color: var(--navy); }
+    .tag-tide { background: rgba(26,46,64,0.15); color: var(--navy); }
+    .tag-spa { background: rgba(203,185,148,0.2); color: var(--navy); }
+
+    /* Pods */
+    .pods { margin-top: 64px; padding-top: 48px; border-top: 2px solid #e5e5e5; }
+    .pods-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: #e5e5e5; }
+    .pod { background: #fff; padding: 24px; }
+    .pod-label { color: var(--gold); margin-bottom: 8px; }
+    .pod-name { font-family: var(--serif); font-size: 20px; color: var(--navy); margin-bottom: 4px; }
+    .pod-lead { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #999; margin-bottom: 8px; }
+    .pod-desc { font-size: 11px; font-weight: 300; color: #666; letter-spacing: 0.2em; }
+    .spa-note { font-size: 11px; font-style: italic; color: var(--gold); margin-top: 16px; letter-spacing: 0.2em; }
+
+    /* ── 6. What You Leave With ─────────────────────── */
+    .leave-with { background: var(--navy-dark); color: #fff; padding: 96px 16px; }
+    .leave-with h2 { font-family: var(--serif); font-size: 48px; font-weight: 300; }
+    .leave-with h2 em { color: var(--gold); }
+    .leave-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 48px; }
+    .leave-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 32px; }
+    .leave-card h3 { font-family: var(--serif); font-size: 28px; font-weight: 300; margin-bottom: 4px; }
+    .leave-card .tag { color: var(--gold); margin-bottom: 16px; }
+    .leave-card p { font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.7); line-height: 1.7; }
+
+    /* ── 7. Brands ────────────────────────────────────── */
+    .brands { background: var(--navy-dark); color: #fff; padding: 128px 16px 96px; }
+    .brands h2 { font-family: var(--serif); font-size: 48px; font-weight: 300; }
+    .brands h2 em { color: var(--gold); }
+    .brands-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 48px; }
+    .brand-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 32px; }
+    .brand-card h3 { font-family: var(--serif); font-size: 28px; font-weight: 300; margin-bottom: 4px; }
+    .brand-card .tag { color: var(--gold); margin-bottom: 16px; }
+    .brand-card p { font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.7); line-height: 1.7; }
+    .journey { text-align: center; margin-top: 64px; }
+    .journey-title { font-family: var(--serif); font-size: 28px; font-weight: 300; font-style: italic; color: rgba(255,255,255,0.5); margin-bottom: 24px; }
+    .journey-steps { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 24px; }
+    .journey-step { text-align: center; }
+    .journey-step .name { font-family: var(--serif); font-size: 20px; margin-bottom: 8px; }
+    .journey-step .sub { color: var(--gold); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; }
+    .journey-arrow { color: var(--gold); font-size: 18px; }
+
+    /* ── 8. Why Newport ─────────────────────────────── */
+    .why-newport { background: var(--warm-grey); padding: 96px 16px; }
+    .why-newport h2 { font-family: var(--serif); font-size: 48px; font-weight: 300; color: var(--navy); }
+    .why-newport h2 em { color: var(--gold); }
+    .why-newport > .container > p { font-size: 14px; font-weight: 300; color: #666; max-width: 600px; margin-bottom: 48px; }
+    .newport-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(26,46,64,0.15); }
+    .newport-card { background: var(--warm-grey); padding: 32px; }
+    .newport-card svg { width: 32px; height: 32px; color: var(--navy); margin-bottom: 16px; stroke-width: 1.5; }
+    .newport-card h3 { font-family: var(--serif); font-size: 20px; color: var(--navy); margin-bottom: 8px; }
+    .newport-card p { font-size: 14px; font-weight: 300; color: #666; line-height: 1.7; }
+
+    /* ── 9. Investment ──────────────────────────────── */
+    .investment { background: #fff; padding: 96px 16px; }
+    .investment h2 { font-family: var(--serif); font-size: 48px; font-weight: 300; color: var(--navy); }
+    .investment h2 em { color: var(--gold); }
+    .investment > .container > p { font-size: 14px; color: #666; margin-bottom: 48px; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .pricing-card { text-align: center; padding: 40px; border: 1px solid #e5e5e5; }
+    .pricing-card.featured { background: var(--navy); color: #fff; border-color: var(--navy); }
+    .pricing-card .tier { color: var(--gold); margin-bottom: 16px; }
+    .pricing-card .price { font-family: var(--serif); font-size: 48px; font-weight: 300; margin-bottom: 4px; }
+    .pricing-card.featured .price { color: #fff; }
+    .pricing-card .price-sub { font-size: 11px; font-weight: 300; color: #999; margin-bottom: 32px; letter-spacing: 0.2em; }
+    .pricing-card.featured .price-sub { color: rgba(255,255,255,0.6); }
+    .pricing-card .price-sm { font-family: var(--serif); font-size: 36px; }
+    .pricing-card ul { text-align: left; }
+    .pricing-card li {
+      display: flex; gap: 8px; align-items: flex-start;
+      font-size: 11px; font-weight: 300; color: #666;
+      padding-bottom: 8px; margin-bottom: 8px;
+      border-bottom: 1px solid #f3f3f3;
+      letter-spacing: 0.2em;
+    }
+    .pricing-card li:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .pricing-card.featured li { color: rgba(255,255,255,0.75); border-color: rgba(255,255,255,0.1); }
+    .pricing-card li .dash { color: var(--gold); flex-shrink: 0; }
+    .addon-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 48px; padding: 32px; background: #f9f9f7; }
+    .addon-grid .label { color: var(--gold); margin-bottom: 8px; }
+    .addon-grid p { font-size: 14px; font-weight: 300; color: #666; }
+
+    /* ── 10. Closing CTA ─────────────────────────────── */
+    .closing {
+      position: relative; background: var(--navy); color: #fff;
+      padding: 128px 16px; text-align: center; overflow: hidden;
+    }
+    .closing-gradient {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, var(--navy), var(--navy), transparent);
+      opacity: 0.5;
+    }
+    .closing-content { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; }
+    .closing h2 { font-family: var(--serif); font-size: 64px; font-weight: 300; font-style: italic; line-height: 1.1; margin-bottom: 32px; }
+    .closing .tagline { font-family: var(--serif); font-size: 20px; font-weight: 300; font-style: italic; color: rgba(255,255,255,0.6); margin-bottom: 48px; letter-spacing: 0.05em; }
+    .closing .cta {
+      display: inline-block; border: 1px solid var(--gold); color: var(--gold);
+      padding: 16px 40px; font-size: 14px; font-weight: 600;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      transition: all 0.3s ease;
+    }
+    .closing .cta:hover { background: var(--gold); color: var(--navy); }
+    .closing .meta { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-top: 64px; font-size: 11px; font-weight: 300; color: rgba(255,255,255,0.5); letter-spacing: 0.05em; }
+
+    /* ── Responsive ──────────────────────────────────── */
+    @media (max-width: 768px) {
+      .hero-title { font-size: 64px; }
+      .hero-subtitle { font-size: 28px; }
+      .hero-stats { grid-template-columns: repeat(2, 1fr); gap: 16px; padding: 16px; }
+      .stats-grid { grid-template-columns: 1fr; }
+      .agenda-grid { grid-template-columns: 1fr; }
+      .pods-grid { grid-template-columns: 1fr 1fr; }
+      .leave-grid { grid-template-columns: 1fr; }
+      .brands-grid { grid-template-columns: 1fr; }
+      .newport-grid { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .addon-grid { grid-template-columns: 1fr; }
+      .journey-steps { gap: 16px; }
+      .closing h2 { font-size: 48px; }
+      .experience h2, .what-is h2, .agenda h2, .leave-with h2,
+      .brands h2, .why-newport h2, .investment h2 { font-size: 36px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════════
+     1. HERO
+     ════════════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1586304785796-234dfa36da73?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxuZXdwb3J0JTIwYmVhY2glMjBoYXJib3IlMjB5YWNodCUyMHN1bnNldHxlbnwxfHx8fDE3NzQxMTU3ODF8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Newport Beach Harbor" />
+  </div>
+  <div class="hero-content">
+    <div class="eyebrow" style="color: var(--gold); margin-bottom: 32px; letter-spacing: 0.3em;">Newport Beach, California</div>
+    <h1 class="hero-title">NWPRT</h1>
+    <div class="hero-subtitle">Ritual</div>
+    <div class="gold-rule" style="margin: 0 auto 48px;"></div>
+    <div class="hero-stats">
+      <div style="text-align: center;">
+        <div class="eyebrow hero-stat-label">Women</div>
+        <div class="hero-stat-value">24</div>
+      </div>
+      <div style="text-align: center;">
+        <div class="eyebrow hero-stat-label">Duration</div>
+        <div class="hero-stat-value">4 Days &middot; 3 Nights</div>
+      </div>
+      <div style="text-align: center;">
+        <div class="eyebrow hero-stat-label">Investment</div>
+        <div class="hero-stat-value">From $4,800</div>
+      </div>
+      <div style="text-align: center;">
+        <div class="eyebrow hero-stat-label">Application</div>
+        <div class="hero-stat-value">By Selection</div>
+      </div>
+    </div>
+    <p class="hero-tagline">Where Newport meets your biology.</p>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     2. THE EXPERIENCE
+     ════════════════════════════════════════════════════════ -->
+<section class="experience">
+  <div class="container-sm">
+    <div class="reveal">
+      <h2>The <em>Experience</em></h2>
+      <div class="gold-rule" style="margin: 24px 0;"></div>
+      <div class="prose">
+        <p>You arrive on a Thursday afternoon and something happens the moment you step out of the car. The salt air, the light, the sound of the ocean. And for the first time in longer than you can remember, you exhale. This isn&rsquo;t a conference, it isn&rsquo;t a spa day, and it isn&rsquo;t another thing on your to-do list.</p>
+        <p>For four days, the only person you are responsible for is yourself. What makes this different is that everything (the advice, the experts, the movement, the food, the recommendations you leave with) is tailored specifically to <em>you</em>. Your DNA. Your bloodwork. Your wearable data.</p>
+        <p>Newport Beach isn&rsquo;t just a backdrop. It&rsquo;s intentional. You leave Sunday with answers you didn&rsquo;t have before, a body that feels seen, and a group of women you will keep for the rest of your life.</p>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="num">24</div>
+          <div class="eyebrow label">Women &middot; By Application Only</div>
+        </div>
+        <div class="stat-card">
+          <div class="num">4</div>
+          <div class="eyebrow label">Days of Transformation</div>
+        </div>
+        <div class="stat-card">
+          <div class="num">90</div>
+          <div class="eyebrow label">Day Personalized Roadmap</div>
+        </div>
+        <div class="stat-card">
+          <div class="num">1</div>
+          <div class="eyebrow label">Woman at the Center &middot; You</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     3. WHAT IS NWPRT RITUAL?
+     ════════════════════════════════════════════════════════ -->
+<section class="what-is">
+  <div class="container-sm">
+    <div class="reveal">
+      <h2>What is <em>NWPRT Ritual</em>?</h2>
+      <div class="gold-rule" style="margin: 24px 0;"></div>
+      <div class="prose">
+        <p>NWPRT Ritual is a 4-day immersive wellness retreat in Newport Beach, California, designed exclusively for women who are ready to understand their bodies at the deepest biological level.</p>
+        <p>This isn&rsquo;t a spa weekend or a conference. It&rsquo;s a full reset, grounded in your DNA, your bloodwork, your wearable data, and the expertise of functional medicine practitioners who actually listen.</p>
+        <p>You&rsquo;ll rotate through four expert-led pods, participate in coastal activities that restore your nervous system, and leave Sunday with a 90-day personalized roadmap that finally makes sense for <em>your</em> body.</p>
+        <p>Limited to 24 women. By application only.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     4. THIS IS PERSONAL
+     ════════════════════════════════════════════════════════ -->
+<section class="personal">
+  <div class="container-sm">
+    <div class="reveal">
+      <h2>THIS IS <em>PERSONAL</em>.</h2>
+      <div class="body">
+        <p>You have felt it. The subtle shifts that showed up quietly and then all at once. The energy that used to be there. The sleep that is not quite right. The sense that your body is changing and nobody around you seems to have real answers, just general advice that was never designed for you specifically.</p>
+        <p class="pull-gold">That changes here.</p>
+        <p>NWPRT Ritual was built on a simple but powerful idea: that every woman deserves to understand her own biology. Not a textbook version of what women your age typically experience. Not a one size fits all supplement protocol or a generic nutrition plan. Your actual data. Your specific hormones. Your unique genetic blueprint.</p>
+        <p class="pull-muted">This is not wellness in general. This is wellness for women in this season of life.</p>
+      </div>
+      <div class="gold-rule-wide" style="margin-top: 64px;"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     5. THE AGENDA
+     ════════════════════════════════════════════════════════ -->
+<section class="agenda">
+  <div class="container">
+    <div class="reveal">
+      <h2>The <em>Agenda</em></h2>
+      <div class="gold-rule" style="margin: 24px 0;"></div>
+    </div>
+
+    <div class="agenda-grid">
+      <!-- Left: Thursday & Saturday -->
+      <div>
+        <div class="reveal">
+          <div class="day-header">
+            <h3>Thursday</h3>
+            <span class="eyebrow-lg" style="color: var(--gold);">Arrive &amp; Exhale</span>
+          </div>
+          <div class="sched-item"><div class="sched-time">12&ndash;3PM</div><div><div class="sched-session">Arrivals &amp; Check In &mdash; gift bag waiting in room</div></div></div>
+          <div class="sched-item"><div class="sched-time">1&ndash;2:30PM</div><div><div class="sched-session">Group 1 &mdash; pre-selected at application</div><div class="sched-tag tag-spa">Spa Pass</div></div></div>
+          <div class="sched-item"><div class="sched-time">3&ndash;4PM</div><div><div class="sched-session">Welcome, Meet the Group &amp; Mocktail</div></div></div>
+          <div class="sched-item"><div class="sched-time">5&ndash;6PM</div><div><div class="sched-session">Sunset Breathwork</div><div class="sched-tag tag-shore">The Shore</div></div></div>
+          <div class="sched-item"><div class="sched-time">6&ndash;7PM</div><div><div class="sched-session">Welcome Dinner &mdash; farm to table, wine available</div></div></div>
+          <div class="sched-item"><div class="sched-time">7:30&ndash;8:30PM</div><div><div class="sched-session">Opening Circle &mdash; why you&rsquo;re here, no topic off limits</div></div></div>
+        </div>
+
+        <div class="reveal" style="margin-top: 32px;">
+          <div class="day-header">
+            <h3>Saturday</h3>
+            <span class="eyebrow-lg" style="color: var(--gold);">Experience Newport</span>
+          </div>
+          <div class="sched-item"><div class="sched-time">6:30&ndash;7:30AM</div><div><div class="sched-session">Coastal Bike or Paddleboard &mdash; Fitness Lead</div><div class="sched-tag tag-current">The Current</div></div></div>
+          <div class="sched-item"><div class="sched-time">9&ndash;10:30AM</div><div><div class="sched-session">Pod Rotations &mdash; Round 4 &middot; Final rotation</div></div></div>
+          <div class="sched-item"><div class="sched-time">10:30AM&ndash;12PM</div><div><div class="sched-session">Individual Touchpoints (2 max) + Wellness Lounge + Spa Pass Group 3</div></div></div>
+          <div class="sched-item"><div class="sched-time">12&ndash;1PM</div><div><div class="sched-session">Lunch</div></div></div>
+          <div class="sched-item"><div class="sched-time">1&ndash;1:30PM</div><div><div class="sched-session">Light Walk &mdash; on property or coastal</div></div></div>
+          <div class="sched-item"><div class="sched-time">1:30&ndash;3PM</div><div><div class="sched-session">Group Painting with Local Newport Artist</div></div></div>
+          <div class="sched-item"><div class="sched-time">3:15&ndash;4:15PM</div><div><div class="sched-session">Guest Speaker / Educational Programming</div><div class="sched-tag tag-tide">The Tide</div></div></div>
+          <div class="sched-item"><div class="sched-time">4:15&ndash;5:30PM</div><div><div class="sched-session">Free time &mdash; get ready</div></div></div>
+          <div class="sched-item"><div class="sched-time">5:30&ndash;8:30PM</div><div><div class="sched-session">Yacht Dinner &mdash; Signature Newport Evening</div></div></div>
+        </div>
+      </div>
+
+      <!-- Right: Friday & Sunday -->
+      <div>
+        <div class="reveal">
+          <div class="day-header">
+            <h3>Friday</h3>
+            <span class="eyebrow-lg" style="color: var(--gold);">Go Deep</span>
+          </div>
+          <div class="sched-item"><div class="sched-time">6:30&ndash;7:30AM</div><div><div class="sched-session">Morning Movement &mdash; Fitness Lead</div><div class="sched-tag tag-current">The Current</div></div></div>
+          <div class="sched-item"><div class="sched-time">8:45&ndash;9:30AM</div><div><div class="sched-session">Halo Founder &mdash; your data decoded (45 min)</div><div class="sched-tag tag-signal">The Signal</div></div></div>
+          <div class="sched-item"><div class="sched-time">9:45&ndash;11:15AM</div><div><div class="sched-session">Pod Rotations &mdash; Round 1 (1.5 hrs)</div></div></div>
+          <div class="sched-item"><div class="sched-time">11:30AM&ndash;1PM</div><div><div class="sched-session">Pod Rotations &mdash; Round 2 (1.5 hrs)</div></div></div>
+          <div class="sched-item"><div class="sched-time">1&ndash;2PM</div><div><div class="sched-session">Lunch &amp; Learn &mdash; Nutrition Lead</div><div class="sched-tag tag-tide">The Tide</div></div></div>
+          <div class="sched-item"><div class="sched-time">2&ndash;3:30PM</div><div><div class="sched-session">Pod Rotations &mdash; Round 3 (1.5 hrs)</div></div></div>
+          <div class="sched-item"><div class="sched-time">3:30&ndash;5PM</div><div><div class="sched-session">Individual Touchpoints + Spa Pass Group 2</div></div></div>
+          <div class="sched-item"><div class="sched-time">5:30&ndash;7PM</div><div><div class="sched-session">Interactive Cooking Class &mdash; Newport Chef + Nutrition Lead</div><div class="sched-tag tag-current">The Current</div></div></div>
+          <div class="sched-item"><div class="sched-time">7&ndash;7:30PM</div><div><div class="sched-session">Dinner &mdash; eat what was cooked, wine available</div></div></div>
+          <div class="sched-item"><div class="sched-time">7:30&ndash;8:30PM</div><div><div class="sched-session">Sound Bath &mdash; integrate, receive, restore</div><div class="sched-tag tag-shore">The Shore</div></div></div>
+        </div>
+
+        <div class="reveal" style="margin-top: 32px;">
+          <div class="day-header">
+            <h3>Sunday</h3>
+            <span class="eyebrow-lg" style="color: var(--gold);">Integrate &amp; Send Off</span>
+          </div>
+          <div class="sched-item"><div class="sched-time">6:30&ndash;7:30AM</div><div><div class="sched-session">Sunrise Walk &amp; Gentle Yoga &mdash; Fitness Lead</div><div class="sched-tag tag-current">The Current</div></div></div>
+          <div class="sched-item"><div class="sched-time">7:30&ndash;8:30AM</div><div><div class="sched-session">Coffee &amp; Breakfast + Spa Pass Group 4</div></div></div>
+          <div class="sched-item"><div class="sched-time">8:30&ndash;8:45AM</div><div><div class="sched-session">Short Group Meditation &mdash; opening The Shore</div></div></div>
+          <div class="sched-item"><div class="sched-time">8:45&ndash;9:30AM</div><div><div class="sched-session">Q&amp;A with Experts &mdash; open, honest, no topic off limits</div><div class="sched-tag tag-shore">The Shore</div></div></div>
+          <div class="sched-item"><div class="sched-time">9:30&ndash;10AM</div><div><div class="sched-session">I Am &mdash; Personal Intention Recording Exercise</div></div></div>
+          <div class="sched-item"><div class="sched-time">10&ndash;10:30AM</div><div><div class="sched-session">Letter to Your Future Self &mdash; sealed, mailed at 30 days</div></div></div>
+          <div class="sched-item"><div class="sched-time">10:30AM&ndash;12PM</div><div><div class="sched-session">Send Off Brunch &mdash; 90-Day Roadmap in hand</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pods -->
+    <div class="reveal">
+      <div class="pods">
+        <div class="eyebrow" style="color: var(--navy); margin-bottom: 24px; font-weight: 700;">The Four Pods &mdash; Every Woman Rotates Through All Four</div>
+        <div class="pods-grid">
+          <div class="pod">
+            <div class="caption pod-label">Pod A</div>
+            <div class="pod-name">The Signal</div>
+            <div class="pod-lead">Halo Founder</div>
+            <div class="pod-desc">DNA &amp; genomic data decoded</div>
+          </div>
+          <div class="pod">
+            <div class="caption pod-label">Pod B</div>
+            <div class="pod-name">The Tide</div>
+            <div class="pod-lead">Affiliated MD</div>
+            <div class="pod-desc">Bloodwork &amp; hormones reviewed</div>
+          </div>
+          <div class="pod">
+            <div class="caption pod-label">Pod C</div>
+            <div class="pod-name">The Current</div>
+            <div class="pod-lead">Functional Nutritionist</div>
+            <div class="pod-desc">Smoothies, Fab 4 &amp; hormone nutrition</div>
+          </div>
+          <div class="pod">
+            <div class="caption pod-label">Pod D</div>
+            <div class="pod-name">The Shore</div>
+            <div class="pod-lead">Mind-Body Specialist</div>
+            <div class="pod-desc">Movement, breathwork &amp; meditation</div>
+          </div>
+        </div>
+        <p class="spa-note">Spa Pass: 8 women per day, pre-selected at application &middot; Thu 1&ndash;2:30PM &middot; Fri 3:30&ndash;5PM &middot; Sat 10:30AM&ndash;12PM &middot; Sun 7:30&ndash;8:30AM</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     6. WHAT YOU LEAVE WITH
+     ════════════════════════════════════════════════════════ -->
+<section class="leave-with">
+  <div class="container">
+    <div class="reveal">
+      <h2>What You <em>Leave With</em></h2>
+      <div class="gold-rule" style="margin: 24px 0;"></div>
+      <div class="leave-grid">
+        <div class="leave-card">
+          <h3>90-Day Roadmap</h3>
+          <div class="caption tag">Your Personalized Plan</div>
+          <p>A detailed, actionable plan that guides you through the next 90 days, tailored to your unique biological profile.</p>
+        </div>
+        <div class="leave-card">
+          <h3>Personal Hypnosis Audio</h3>
+          <div class="caption tag">Deepen Your Practice</div>
+          <p>A guided hypnosis session to help you integrate the insights and practices from the retreat.</p>
+        </div>
+        <div class="leave-card">
+          <h3>Future Self Letter</h3>
+          <div class="caption tag">A Message to Your Future Self</div>
+          <p>A letter you write to yourself on the last day of the retreat, to be opened 30 days later.</p>
+        </div>
+      </div>
+    </div>
+    <div class="gold-rule" style="width: 96px; margin: 64px auto 0;"></div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     7. THE BRANDS
+     ════════════════════════════════════════════════════════ -->
+<section class="brands">
+  <div class="container">
+    <div class="reveal">
+      <h2>The <em>Brands</em></h2>
+      <div class="gold-rule" style="margin: 24px 0;"></div>
+      <div class="brands-grid">
+        <div class="brand-card">
+          <h3>Halo</h3>
+          <div class="caption tag">The Science</div>
+          <p>Genomics, biomarkers, and wearables blended with functional medicine. Your complete biological picture &mdash; decoded, actionable, and finally yours.</p>
+        </div>
+        <div class="brand-card">
+          <h3>NWPRT</h3>
+          <div class="caption tag">The Lifestyle</div>
+          <p>The brand that is Newport Beach. In the gift bag, on the morning walk, at the yacht dinner. The visual identity of a life well lived.</p>
+        </div>
+        <div class="brand-card">
+          <h3>Ritual</h3>
+          <div class="caption tag">The Container</div>
+          <p>Where Halo&rsquo;s science and Newport&rsquo;s lifestyle collide. Four days that become the foundation for everything that follows.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Journey -->
+    <div class="reveal">
+      <div class="journey">
+        <div class="journey-title">The Journey</div>
+        <div class="journey-steps">
+          <div class="journey-step">
+            <div class="name">Newport Beach</div>
+            <div class="sub">The Foundation</div>
+          </div>
+          <div class="journey-arrow">&rarr;</div>
+          <div class="journey-step">
+            <div class="name">Napa / La Jolla</div>
+            <div class="sub">The Reset</div>
+          </div>
+          <div class="journey-arrow">&rarr;</div>
+          <div class="journey-step">
+            <div class="name">Croatia</div>
+            <div class="sub">The Odyssey</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     8. WHY NEWPORT
+     ════════════════════════════════════════════════════════ -->
+<section class="why-newport">
+  <div class="container">
+    <div class="reveal">
+      <h2>Why <em>Newport</em></h2>
+      <div class="gold-rule" style="margin: 24px 0;"></div>
+      <p>Newport Beach isn&rsquo;t just a setting. It&rsquo;s a state of mind. One of the world&rsquo;s great small boat harbors. Eight miles of Pacific coastline. The kind of place that makes slowing down feel like the most natural thing in the world.</p>
+    </div>
+    <div class="reveal">
+      <div class="newport-grid">
+        <div class="newport-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="3"/><line x1="12" y1="22" x2="12" y2="8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/></svg>
+          <h3>Newport Harbor</h3>
+          <p>One of the finest small boat harbors in the world. 9,000+ vessels. The yacht dinner backdrop that makes Saturday evening unforgettable.</p>
+        </div>
+        <div class="newport-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg>
+          <h3>Crystal Cove</h3>
+          <p>Historic 1920s coastal cottages, 3.2 miles of natural seashore. Once the Hollywood elite getaway. Still magical.</p>
+        </div>
+        <div class="newport-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="18.5" cy="17.5" r="3.5"/><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="15" cy="5" r="1"/><path d="M12 17.5V14l-3-3 4-3 2 3h2"/></svg>
+          <h3>Pacific Coast Highway</h3>
+          <p>The iconic coastal ride. Saturday morning on bikes. Salt air, ocean views, 24 women finding their current.</p>
+        </div>
+        <div class="newport-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <h3>Fashion Island</h3>
+          <p>Open-air luxury at the heart of Newport. The backdrop for the lifestyle you&rsquo;ve earned and are learning to inhabit fully.</p>
+        </div>
+        <div class="newport-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 12h3v8h6v-6h2v6h6v-8h3L12 2z"/></svg>
+          <h3>Balboa Island</h3>
+          <p>2.6 miles of waterfront charm. Boutiques, dining, the ferry. The kind of afternoon that makes everything feel possible.</p>
+        </div>
+        <div class="newport-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 12c.94-3.46 4.94-6 8.5-6 3.56 0 6.06 2.54 7 6"/><path d="M6.5 12c-.94 3.46.44 6 4 6 3.56 0 6.06-2.54 7-6"/><path d="M2 12h4.5"/></svg>
+          <h3>The Pacific</h3>
+          <p>Dolphins. Gray whales. 8 miles of coastline. A constant reminder: tides shift. So do we.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     9. THE INVESTMENT
+     ════════════════════════════════════════════════════════ -->
+<section class="investment">
+  <div class="container">
+    <div class="reveal">
+      <h2>The <em>Investment</em></h2>
+      <div class="gold-rule" style="margin: 24px 0;"></div>
+      <p>All-inclusive. Nothing hidden. Everything intentional.</p>
+    </div>
+
+    <div class="reveal">
+      <div class="pricing-grid">
+        <!-- Double -->
+        <div class="pricing-card">
+          <div class="eyebrow tier">Double Occupancy</div>
+          <div class="price" style="color: var(--navy);">$4,800</div>
+          <div class="price-sub">per person &middot; shared room</div>
+          <ul>
+            <li><span class="dash">&mdash;</span><span>Full retreat program</span></li>
+            <li><span class="dash">&mdash;</span><span>Shared private room &middot; 3 nights</span></li>
+            <li><span class="dash">&mdash;</span><span>All meals + wine at dinners</span></li>
+            <li><span class="dash">&mdash;</span><span>Yacht dinner Saturday</span></li>
+            <li><span class="dash">&mdash;</span><span>All pod sessions &amp; expert access</span></li>
+            <li><span class="dash">&mdash;</span><span>Curated gift bag</span></li>
+            <li><span class="dash">&mdash;</span><span>Spa pass (1 session)</span></li>
+            <li><span class="dash">&mdash;</span><span>90-day roadmap</span></li>
+            <li><span class="dash">&mdash;</span><span>Personal hypnosis audio</span></li>
+          </ul>
+        </div>
+
+        <!-- Single — Featured -->
+        <div class="pricing-card featured">
+          <div class="eyebrow tier">Single Occupancy</div>
+          <div class="price">$5,500</div>
+          <div class="price-sub">per person &middot; private room</div>
+          <ul>
+            <li><span class="dash">&mdash;</span><span>Full retreat program</span></li>
+            <li><span class="dash">&mdash;</span><span>Private room &middot; 3 nights</span></li>
+            <li><span class="dash">&mdash;</span><span>All meals + wine at dinners</span></li>
+            <li><span class="dash">&mdash;</span><span>Yacht dinner Saturday</span></li>
+            <li><span class="dash">&mdash;</span><span>All pod sessions &amp; expert access</span></li>
+            <li><span class="dash">&mdash;</span><span>Curated gift bag + morning ritual kit</span></li>
+            <li><span class="dash">&mdash;</span><span>Pre-retreat prep box</span></li>
+            <li><span class="dash">&mdash;</span><span>Spa pass (1 session)</span></li>
+            <li><span class="dash">&mdash;</span><span>90-day personalized roadmap</span></li>
+            <li><span class="dash">&mdash;</span><span>Personal hypnosis audio</span></li>
+            <li><span class="dash">&mdash;</span><span>Future self letter at 30 days</span></li>
+          </ul>
+        </div>
+
+        <!-- Private Group -->
+        <div class="pricing-card">
+          <div class="eyebrow tier">Private Group</div>
+          <div class="price price-sm" style="color: var(--navy);">$85,000</div>
+          <div class="price-sub">flat fee &middot; 12 women &middot; full buyout</div>
+          <ul>
+            <li><span class="dash">&mdash;</span><span>Entire retreat exclusively yours</span></li>
+            <li><span class="dash">&mdash;</span><span>Custom programming for your group</span></li>
+            <li><span class="dash">&mdash;</span><span>All single occupancy inclusions</span></li>
+            <li><span class="dash">&mdash;</span><span>Corporate teams, friend groups, wellness communities</span></li>
+            <li><span class="dash">&mdash;</span><span>You set the price for your group</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <div class="addon-grid">
+        <div>
+          <div class="eyebrow label">Optional Add-On</div>
+          <p>Human Design or Astrology &mdash; $150&ndash;$250. Small group of 8&ndash;10. Reserved at application.</p>
+        </div>
+        <div>
+          <div class="eyebrow label">How to Apply</div>
+          <p>Short application + 15-minute call with Amy. Selection confirmed within 48 hours. Limited to 24 women.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     10. CLOSING CTA
+     ════════════════════════════════════════════════════════ -->
+<section class="closing">
+  <div class="closing-gradient"></div>
+  <div class="closing-content">
+    <div class="reveal">
+      <div class="eyebrow-lg" style="color: var(--gold); letter-spacing: 0.3em; margin-bottom: 32px;">NWPRT Ritual &middot; Newport Beach</div>
+      <h2>Your tide<br>is turning.</h2>
+      <div class="gold-rule-wide" style="margin: 48px auto;"></div>
+      <p class="tagline">24 women. 4 days. One turning point.</p>
+      <a href="https://gethalohealth.com/connect" class="cta">Apply for Your Spot</a>
+      <div class="meta">
+        <span>Thursday&ndash;Sunday</span>
+        <span>&middot;</span>
+        <span>Newport Beach, CA</span>
+        <span>&middot;</span>
+        <span>From $4,800</span>
+        <span>&middot;</span>
+        <span>By Application Only</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Scroll Reveal Script ──────────────────────────────── -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const els = document.querySelectorAll('.reveal');
+    if (!window.IntersectionObserver) {
+      els.forEach(el => el.classList.add('visible'));
+      return;
+    }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    els.forEach(el => io.observe(el));
+  });
+</script>
+
+</body>
+</html>

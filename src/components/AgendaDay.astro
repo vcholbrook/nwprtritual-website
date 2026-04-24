@@ -1,0 +1,48 @@
+---
+export interface ScheduleItem {
+  time: string;
+  session: string;
+  tag?: { label: string; pod?: 'signal' | 'tide' | 'current' | 'shore' | 'spa' };
+}
+
+interface Props {
+  day: string;
+  subtitle: string;
+  items: ScheduleItem[];
+  class?: string;
+}
+
+const { day, subtitle, items, class: className = '' } = Astro.props;
+
+const podTint: Record<NonNullable<NonNullable<ScheduleItem['tag']>['pod']>, string> = {
+  signal: 'bg-nwprt-navy/10 text-nwprt-navy',
+  tide: 'bg-nwprt-sky/30 text-nwprt-navy',
+  current: 'bg-nwprt-olive/15 text-nwprt-navy',
+  shore: 'bg-nwprt-cream text-nwprt-navy',
+  spa: 'bg-nwprt-pink/40 text-nwprt-navy',
+};
+---
+
+<div class={`scroll-reveal ${className}`}>
+  <div class="flex items-baseline gap-4 mb-6 pb-3 border-b border-nwprt-navy/15">
+    <h3 class="display text-2xl md:text-3xl text-nwprt-navy">{day}</h3>
+    <span class="accent-italic text-nwprt-navy/60">{subtitle}</span>
+  </div>
+  <ul class="divide-y divide-nwprt-navy/10">
+    {items.map((item) => (
+      <li class="flex gap-4 py-3">
+        <div class="caption text-nwprt-navy/50 w-24 shrink-0 pt-[3px]">{item.time}</div>
+        <div class="text-sm leading-relaxed text-nwprt-navy/85">
+          <div>{item.session}</div>
+          {item.tag && (
+            <span
+              class={`caption inline-block mt-2 px-2 py-1 ${item.tag.pod ? podTint[item.tag.pod] : 'bg-nwprt-navy/10 text-nwprt-navy'}`}
+            >
+              {item.tag.label}
+            </span>
+          )}
+        </div>
+      </li>
+    ))}
+  </ul>
+</div>

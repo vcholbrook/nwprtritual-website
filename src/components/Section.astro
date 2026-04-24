@@ -1,0 +1,32 @@
+---
+/**
+ * Full-bleed section with NWPRT tone presets. Yellow is a signature color —
+ * reserve `tone="yellow"` for at most one per view.
+ */
+type Tone = 'cream' | 'navy' | 'off-white' | 'yellow';
+type Spacing = 'default' | 'lg';
+
+interface Props {
+  tone?: Tone;
+  spacing?: Spacing;
+  class?: string;
+}
+
+const { tone = 'cream', spacing = 'default', class: className = '' } = Astro.props;
+
+const tones: Record<Tone, string> = {
+  cream: 'bg-nwprt-cream text-nwprt-navy',
+  navy: 'bg-nwprt-navy text-nwprt-cream',
+  'off-white': 'bg-nwprt-off-white text-nwprt-navy',
+  yellow: 'bg-nwprt-yellow text-nwprt-navy',
+};
+
+const spacings: Record<Spacing, string> = {
+  default: 'py-16 md:py-20',
+  lg: 'py-20 md:py-28',
+};
+---
+
+<section class={`${tones[tone]} ${spacings[spacing]} ${className}`}>
+  <slot />
+</section>
