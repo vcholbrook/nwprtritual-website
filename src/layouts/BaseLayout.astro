@@ -31,7 +31,9 @@ const fullTitle = title === DEFAULT_TITLE ? DEFAULT_TITLE : `${title} | ${DEFAUL
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
-    <link rel="icon" href="/favicon.png" />
+    <link rel="icon" type="image/jpeg" sizes="32x32" href="/favicon-32.jpg" />
+    <link rel="icon" type="image/jpeg" sizes="256x256" href="/favicon-256.jpg" />
+    <link rel="apple-touch-icon" sizes="256x256" href="/favicon-256.jpg" />
     <link rel="canonical" href={canonical} />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
