@@ -1,0 +1,73 @@
+---
+const navLinks = [
+  { href: '/about', label: 'About the Retreat' },
+  { href: '/schedule', label: 'The Schedule' },
+  { href: '/science', label: 'The Science' },
+  { href: '/investment', label: 'Investment' },
+];
+
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-nwprt-navy text-nwprt-cream py-12 md:py-16">
+  <div class="max-w-7xl mx-auto w-full px-4 md:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-8">
+      {/* Brand */}
+      <div class="text-center">
+        <a href="/">
+          <img
+            src="/nwprt-logo-navy.png"
+            alt="NWPRT"
+            class="w-28 md:w-32 opacity-70 mb-2 mx-auto h-auto"
+            width="3803"
+            height="1384"
+            loading="lazy"
+          />
+        </a>
+        <div class="accent-italic text-2xl md:text-3xl text-nwprt-cream/90 mb-3">Ritual</div>
+        <p class="accent-italic text-xs md:text-sm text-nwprt-cream/70 leading-relaxed max-w-xs mx-auto">
+          Where Newport meets happiness, health, and longevity.
+        </p>
+      </div>
+
+      {/* Quick Links */}
+      <div class="md:text-right">
+        <h4 class="caption text-nwprt-yellow mb-4">Quick Links</h4>
+        <ul class="space-y-2 text-sm">
+          {navLinks.map((link) => (
+            <li>
+              <a href={link.href} class="text-nwprt-cream/70 hover:text-nwprt-yellow transition-colors">
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Connect */}
+      <div class="md:text-right">
+        <h4 class="caption text-nwprt-yellow mb-4">Connect</h4>
+        <div class="space-y-3">
+          <p class="text-sm text-nwprt-cream/70">Newport Beach, California</p>
+          <a
+            href="mailto:ritual@gethalohealth.com"
+            class="text-sm text-nwprt-cream/70 hover:text-nwprt-yellow transition-colors block"
+          >
+            ritual@gethalohealth.com
+          </a>
+          <button
+            type="button"
+            data-open-application
+            class="bg-nwprt-yellow text-nwprt-navy caption px-6 py-3 tracking-[0.2em] hover:bg-nwprt-cream transition-colors duration-300"
+          >
+            Apply Now
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="pt-8 border-t border-nwprt-cream/20 text-center text-xs text-nwprt-cream/50">
+      <p>&copy; {year} NWPRT Ritual. All rights reserved.</p>
+    </div>
+  </div>
+</footer>

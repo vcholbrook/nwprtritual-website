@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import logo from '../../imports/nwprt-logo.png';
+import logo from '../../imports/nwprt-logo-navy.png';
 import heroImage from '../../imports/nwprt-lifestyle-1.jpg';
 
 export function Hero() {
@@ -34,7 +34,7 @@ export function Hero() {
             <img
               src={logo}
               alt="NWPRT"
-              className="w-64 md:w-96 lg:w-[500px]"
+              className="w-64 md:w-96 lg:w-[500px] opacity-50"
             />
           </motion.div>
 

@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import WhatIsRitual from '../components/sections/WhatIsRitual.astro';
+import Takeaway from '../components/sections/Takeaway.astro';
+import Brands from '../components/sections/Brands.astro';
+import WhyNewport from '../components/sections/WhyNewport.astro';
+---
+
+<BaseLayout
+  title="About the Retreat"
+  description="A four-day immersive journey designed for women ready to understand their bodies at the deepest level. Newport Beach, by application only."
+>
+  <PageHero
+    eyebrow="The Experience"
+    title="About the Retreat"
+    tagline="A four-day immersive journey designed for women ready to understand their bodies at the deepest level."
+  />
+  <WhatIsRitual />
+  <Takeaway />
+  <Brands />
+  <WhyNewport />
+</BaseLayout>

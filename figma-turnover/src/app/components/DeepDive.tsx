@@ -38,13 +38,9 @@ export function DeepDive() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <div className="caption text-nwprt-navy/50 mb-3">Chapter two</div>
-          <h2 className="display text-4xl md:text-6xl text-nwprt-navy mb-6">Your Science Sessions</h2>
-          <div className="rule bg-nwprt-navy mb-10 opacity-40" />
-
           <div className="space-y-6 text-lg md:text-xl leading-relaxed text-nwprt-navy/80 mb-12">
             <p>
-              Your genetic data and bloodwork are reviewed before you arrive. Your sessions are built around what they reveal. You are not sitting in a lecture designed for someone else - you are in a room with experts who already know your biology.
+              You are not sitting in a lecture designed for someone else - you are in a room with experts who already know your biology.
             </p>
           </div>
 

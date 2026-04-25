@@ -1,5 +1,8 @@
 ---
 import '../styles/global.css';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import ApplicationModal from '../components/ApplicationModal.astro';
 
 interface Props {
   title?: string;
@@ -7,16 +10,23 @@ interface Props {
   /** Path relative to /public (e.g. "/img/og.jpg") or absolute URL. */
   ogImage?: string;
   ogType?: 'website' | 'article';
+  /** Set to false to omit the sticky header (e.g. for a future coming-soon screen). */
+  showHeader?: boolean;
+  /** Set to false to omit the footer. */
+  showFooter?: boolean;
 }
 
-const DEFAULT_TITLE = 'NWPRTritual';
-const DEFAULT_DESCRIPTION = 'NWPRTritual — a Newport Beach heritage ritual.';
+const DEFAULT_TITLE = 'NWPRT Ritual';
+const DEFAULT_DESCRIPTION =
+  'A 4-day immersive wellness retreat in Newport Beach. DNA-driven insights, expert-led pods, coastal activities, and a 90-day personalized roadmap. By application only.';
 
 const {
   title = DEFAULT_TITLE,
   description = DEFAULT_DESCRIPTION,
   ogImage = '/og-nwprt-ritual.jpg',
   ogType = 'website',
+  showHeader = true,
+  showFooter = true,
 } = Astro.props;
 
 const siteOrigin = Astro.site?.toString().replace(/\/$/, '') ?? 'https://www.nwprtritual.com';
@@ -54,9 +64,16 @@ const fullTitle = title === DEFAULT_TITLE ? DEFAULT_TITLE : `${title} | ${DEFAUL
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={absoluteOg} />
   </head>
-  <body class="antialiased min-h-screen flex flex-col">
-    <main class="flex-grow overflow-x-hidden">
+  <body class="antialiased min-h-screen flex flex-col overflow-x-hidden">
+    {showHeader && <SiteHeader />}
+    <main class="flex-grow">
       <slot />
     </main>
+    {showFooter && <SiteFooter />}
+    <ApplicationModal />
+
+    <script>
+      import '../scripts/scroll-reveal.ts';
+    </script>
   </body>
 </html>

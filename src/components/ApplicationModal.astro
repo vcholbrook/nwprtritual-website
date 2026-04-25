@@ -1,0 +1,172 @@
+---
+/**
+ * Application form modal. Native <dialog> element controlled via JS.
+ *
+ * Wires:
+ *   - listens for window 'openApplication' custom event → opens
+ *   - submit captures form data and shows a "received" success state
+ *
+ * Form is intentionally not wired to a backend yet. When ready, POST the
+ * captured payload to a Cloudflare Pages Function that fans out to a Slack
+ * webhook + the Notion API. The TODO comment in the submit handler below
+ * is the single place that needs to change.
+ */
+---
+
+<dialog
+  data-application-modal
+  class="bg-transparent p-0 m-0 backdrop:bg-nwprt-navy/90 max-w-none w-full h-full max-h-none open:flex items-center justify-center"
+>
+  <div data-modal-form-wrapper class="bg-nwprt-off-white max-w-2xl w-full max-h-[90vh] overflow-y-auto m-4 relative">
+    {/* FORM STATE */}
+    <div data-modal-form class="p-8 md:p-12">
+      <button
+        type="button"
+        data-modal-close
+        aria-label="Close"
+        class="absolute top-6 right-6 text-nwprt-navy/50 hover:text-nwprt-navy transition-colors"
+      >
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18" /></svg>
+      </button>
+
+      <div class="mb-8">
+        <h2 class="display text-3xl md:text-4xl text-nwprt-navy mb-4">Apply for NWPRT Ritual</h2>
+        <div class="rule bg-nwprt-navy mb-4"></div>
+        <p class="text-nwprt-navy/70 leading-relaxed">
+          We carefully curate each retreat to ensure an intimate, transformative experience.
+          Tell us a bit about yourself and what you&rsquo;re looking for.
+        </p>
+      </div>
+
+      <form data-application-form class="space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label for="appl-firstName" class="caption text-nwprt-navy/60 mb-2 block">First Name</label>
+            <input id="appl-firstName" name="firstName" type="text" required
+              class="w-full px-4 py-3 border border-nwprt-navy/20 focus:border-nwprt-navy focus:outline-none bg-white" />
+          </div>
+          <div>
+            <label for="appl-lastName" class="caption text-nwprt-navy/60 mb-2 block">Last Name</label>
+            <input id="appl-lastName" name="lastName" type="text" required
+              class="w-full px-4 py-3 border border-nwprt-navy/20 focus:border-nwprt-navy focus:outline-none bg-white" />
+          </div>
+        </div>
+
+        <div>
+          <label for="appl-email" class="caption text-nwprt-navy/60 mb-2 block">Email</label>
+          <input id="appl-email" name="email" type="email" required
+            class="w-full px-4 py-3 border border-nwprt-navy/20 focus:border-nwprt-navy focus:outline-none bg-white" />
+        </div>
+
+        <div>
+          <label for="appl-phone" class="caption text-nwprt-navy/60 mb-2 block">Phone</label>
+          <input id="appl-phone" name="phone" type="tel" required
+            class="w-full px-4 py-3 border border-nwprt-navy/20 focus:border-nwprt-navy focus:outline-none bg-white" />
+        </div>
+
+        <div>
+          <label for="appl-location" class="caption text-nwprt-navy/60 mb-2 block">Location</label>
+          <input id="appl-location" name="location" type="text" required placeholder="City, State"
+            class="w-full px-4 py-3 border border-nwprt-navy/20 focus:border-nwprt-navy focus:outline-none bg-white" />
+        </div>
+
+        <div>
+          <label for="appl-goals" class="caption text-nwprt-navy/60 mb-2 block">What are you hoping to gain from this experience?</label>
+          <textarea id="appl-goals" name="goals" required rows="4"
+            class="w-full px-4 py-3 border border-nwprt-navy/20 focus:border-nwprt-navy focus:outline-none bg-white resize-none"></textarea>
+        </div>
+
+        <div>
+          <label for="appl-experience" class="caption text-nwprt-navy/60 mb-2 block">Have you attended similar retreats or wellness programs before?</label>
+          <textarea id="appl-experience" name="experience" required rows="3"
+            class="w-full px-4 py-3 border border-nwprt-navy/20 focus:border-nwprt-navy focus:outline-none bg-white resize-none"></textarea>
+        </div>
+
+        <button type="submit"
+          class="w-full bg-nwprt-yellow text-nwprt-navy caption px-8 py-4 tracking-[0.2em] hover:bg-nwprt-navy hover:text-nwprt-yellow transition-colors duration-300">
+          Submit Application
+        </button>
+      </form>
+    </div>
+
+    {/* SUCCESS STATE */}
+    <div data-modal-success class="p-8 md:p-12 text-center hidden">
+      <div class="max-w-md mx-auto">
+        <div class="w-16 h-16 bg-nwprt-yellow/20 rounded-full flex items-center justify-center mx-auto mb-6">
+          <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" class="text-nwprt-navy"><path d="M5 13l4 4L19 7" /></svg>
+        </div>
+        <h2 class="display text-3xl md:text-4xl text-nwprt-navy mb-4">Application Received</h2>
+        <div class="rule bg-nwprt-navy mx-auto mb-6"></div>
+        <p class="text-nwprt-navy/70 leading-relaxed mb-8">
+          Thank you for your interest in NWPRT Ritual. We&rsquo;ll be in touch within the next 24&ndash;48 hours
+          to schedule a brief conversation and ensure this experience aligns with your goals.
+        </p>
+        <button type="button" data-modal-close
+          class="bg-nwprt-navy text-nwprt-cream caption px-8 py-4 tracking-[0.2em] hover:bg-nwprt-yellow hover:text-nwprt-navy transition-colors duration-300">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<script>
+  const dialog = document.querySelector<HTMLDialogElement>('[data-application-modal]');
+  const formView = dialog?.querySelector<HTMLElement>('[data-modal-form]');
+  const successView = dialog?.querySelector<HTMLElement>('[data-modal-success]');
+  const form = dialog?.querySelector<HTMLFormElement>('[data-application-form]');
+
+  const reset = () => {
+    if (formView) formView.classList.remove('hidden');
+    if (successView) successView.classList.add('hidden');
+    form?.reset();
+  };
+
+  const open = () => {
+    reset();
+    if (dialog && !dialog.open) dialog.showModal();
+  };
+
+  const close = () => dialog?.close();
+
+  window.addEventListener('openApplication', open);
+
+  dialog?.addEventListener('click', (e) => {
+    // Click on the backdrop (the dialog itself, not its inner form wrapper) closes the modal.
+    if (e.target === dialog) close();
+  });
+
+  dialog?.querySelectorAll<HTMLElement>('[data-modal-close]').forEach((btn) => {
+    btn.addEventListener('click', close);
+  });
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(form).entries());
+
+    // TODO: replace this stub with a POST to a Cloudflare Pages Function that
+    // fans out to the Slack #nwprt-ritual-applications webhook + the Notion
+    // applications database. For now, we just log + show success.
+    console.log('[NWPRT application]', data);
+
+    if (formView) formView.classList.add('hidden');
+    if (successView) successView.classList.remove('hidden');
+  });
+</script>
+
+<style>
+  /* Native <dialog> defaults: center via flex; provide a soft fade-in. */
+  dialog[data-application-modal] {
+    border: none;
+  }
+  dialog[data-application-modal][open] {
+    animation: modal-fade-in 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  dialog[data-application-modal]::backdrop {
+    backdrop-filter: blur(4px);
+  }
+  @keyframes modal-fade-in {
+    from { opacity: 0; transform: scale(0.97) translateY(8px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
+</style>

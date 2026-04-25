@@ -4,6 +4,7 @@ interface Brand {
   subtitle: string;
   description: string;
   logo?: string;
+  url?: string;
 }
 
 const brands: Brand[] = [
@@ -12,12 +13,14 @@ const brands: Brand[] = [
     subtitle: 'The Lifestyle',
     description: 'The brand that is Newport Beach. In the gift bag, on the morning walk, at the yacht dinner. The visual identity of a life well lived.',
     logo: '/nwprt-logo-sm.png',
+    url: 'https://www.nwprt.co',
   },
   {
     name: 'Halo',
     subtitle: 'The Science',
     description: 'Genomics, biomarkers, and wearables blended with functional medicine. Your complete biological picture: decoded, actionable, and finally yours.',
     logo: '/halo-logo-sm.png',
+    url: 'https://gethalohealth.com/nwprt',
   },
   {
     name: 'Ritual',
@@ -27,9 +30,21 @@ const brands: Brand[] = [
 ];
 
 const journey = [
-  { location: 'Newport Beach', subtitle: 'The Foundation' },
-  { location: 'Napa / La Jolla', subtitle: 'The Reset' },
-  { location: 'Croatia', subtitle: 'The Odyssey' },
+  {
+    location: 'Newport Beach',
+    subtitle: 'The Foundation',
+    description: 'Where it all begins. Four days that set the foundation for everything that follows.',
+  },
+  {
+    location: 'Napa Valley / La Jolla',
+    subtitle: 'The Reset',
+    description: 'Seasonal retreats in wine country vineyards and coastal sanctuaries. Your next level of depth.',
+  },
+  {
+    location: 'Croatia',
+    subtitle: 'The Odyssey',
+    description: "The Adriatic. Island-hopping. The retreat experience you've been building toward.",
+  },
 ];
 ---
 
@@ -42,33 +57,50 @@ const journey = [
     </div>
 
     <div class="scroll-reveal grid md:grid-cols-3 gap-6">
-      {brands.map((brand) => (
-        <div class="relative border border-nwprt-cream/15 bg-nwprt-cream/[0.03] p-8 hover:bg-nwprt-cream/[0.06] transition-colors">
-          <div class="absolute top-6 right-6">
-            {brand.logo ? (
-              <img src={brand.logo} alt={`${brand.name} logo`} class="h-8 md:h-10 w-auto opacity-80" loading="lazy" />
-            ) : (
-              <div class="accent-italic text-3xl md:text-4xl text-nwprt-cream/40">Ritual</div>
-            )}
-          </div>
-          <h3 class="display text-2xl md:text-3xl mb-2 text-nwprt-cream pr-24">{brand.name}</h3>
-          <div class="accent-italic text-nwprt-cream/60 mb-5">{brand.subtitle}</div>
-          <p class="text-sm leading-relaxed text-nwprt-cream/70">{brand.description}</p>
-        </div>
-      ))}
+      {brands.map((brand) => {
+        const cardClasses = 'relative border border-nwprt-cream/15 bg-nwprt-cream/[0.03] p-8 hover:bg-nwprt-cream/[0.06] transition-colors';
+        const inner = (
+          <>
+            <div class="absolute top-6 right-6">
+              {brand.logo ? (
+                <img src={brand.logo} alt={`${brand.name} logo`} class="h-8 md:h-10 w-auto opacity-80" loading="lazy" />
+              ) : (
+                <div class="accent-italic text-3xl md:text-4xl text-nwprt-cream/40">Ritual</div>
+              )}
+            </div>
+            <h3 class="display text-2xl md:text-3xl mb-2 text-nwprt-cream pr-24">{brand.name}</h3>
+            <div class="accent-italic text-nwprt-cream/60 mb-5">{brand.subtitle}</div>
+            <p class="text-sm leading-relaxed text-nwprt-cream/70">{brand.description}</p>
+          </>
+        );
+        return brand.url ? (
+          <a href={brand.url} target="_blank" rel="noopener noreferrer" class={`block ${cardClasses}`}>
+            {inner}
+          </a>
+        ) : (
+          <div class={cardClasses}>{inner}</div>
+        );
+      })}
     </div>
 
-    <div class="scroll-reveal mt-20 text-center">
-      <div class="accent-italic text-xl md:text-2xl text-nwprt-cream/50 mb-8">The Journey</div>
-      <div class="flex flex-wrap justify-center items-center gap-6 md:gap-8">
+    <div class="scroll-reveal mt-20">
+      <div class="text-center mb-12">
+        <div class="accent-italic text-2xl md:text-3xl text-nwprt-cream mb-4">The Journey</div>
+        <p class="text-nwprt-cream/70 max-w-2xl mx-auto">
+          This retreat is just the beginning. What happens next is where transformation deepens.
+        </p>
+      </div>
+
+      <div class="flex flex-wrap justify-center items-stretch gap-6 md:gap-8">
         {journey.map((stop, i) => (
           <div class="flex items-center gap-6 md:gap-8">
-            <div class="text-center">
-              <div class="display text-xl md:text-2xl text-nwprt-cream">{stop.location}</div>
-              <div class="caption text-nwprt-cream/50 mt-2">{stop.subtitle}</div>
+            <div class="bg-nwprt-cream/[0.03] border border-nwprt-cream/15 p-8 text-center max-w-xs">
+              <div class="display text-xl md:text-2xl text-nwprt-cream mb-2">{stop.location}</div>
+              <div class="caption text-nwprt-yellow mb-4">{stop.subtitle}</div>
+              <p class="text-sm text-nwprt-cream/70 leading-relaxed">{stop.description}</p>
             </div>
             {i < journey.length - 1 && (
-              <span class="accent-italic text-nwprt-cream/40 text-2xl">&rarr;</span>
+              <span class="accent-italic text-nwprt-cream/40 text-3xl hidden md:block">&rarr;</span>
             )}
           </div>
         ))}

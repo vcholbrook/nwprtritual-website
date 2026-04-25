@@ -24,17 +24,17 @@ export function FinalCTA() {
           <div className="rule-yellow mx-auto my-10" />
 
           <p className="accent-italic text-lg md:text-xl text-nwprt-cream/60 mb-12">
-            24 women. 4 days. One turning point.
+            An intimate group. 4 days. One turning point.
           </p>
 
-          <motion.a
-            href="https://gethalohealth.com/connect"
+          <motion.button
+            onClick={() => window.dispatchEvent(new CustomEvent('openApplication'))}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="inline-block bg-nwprt-yellow text-nwprt-navy caption px-10 py-4 tracking-[0.2em] hover:bg-nwprt-cream transition-colors duration-300"
           >
             Apply for Your Spot
-          </motion.a>
+          </motion.button>
 
           <div className="flex flex-wrap justify-center gap-3 md:gap-4 mt-16 caption text-nwprt-cream/40">
             <span>Thursday-Sunday</span>

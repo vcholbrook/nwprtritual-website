@@ -13,7 +13,7 @@ const locations = [
   },
   {
     title: 'Pacific Coast Highway',
-    description: 'The iconic coastal ride. Saturday morning on bikes. Salt air, ocean views, 24 women finding their current.',
+    description: 'The iconic coastal ride. Saturday morning on bikes. Salt air, ocean views, a group of like-minded women finding their current.',
   },
   {
     title: 'Fashion Island',

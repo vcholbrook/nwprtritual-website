@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500;1,600&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -18,9 +18,11 @@
   --color-nwprt-off-white: #FDFCF7;
   --color-nwprt-gray: #8A8A82;
 
-  /* Type roles */
-  --font-display: 'Oswald', sans-serif;
-  --font-body: 'Inter', sans-serif;
+  /* Type roles — refined to a softer, more feminine pairing.
+     Cormorant Garamond is a refined serif for display moments;
+     Lato is a humanist sans for body. Playfair italic stays for accents. */
+  --font-display: 'Cormorant Garamond', serif;
+  --font-body: 'Lato', sans-serif;
   --font-accent: 'Playfair Display', serif;
 }
 
@@ -101,6 +103,20 @@ body {
   }
 }
 
+/* Subtle scale-up on mount, used by the hero logo for a soft entrance. */
+.fade-in-scale {
+  opacity: 0;
+  transform: scale(0.95);
+  animation: fadeScale 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+}
+
+@keyframes fadeScale {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 /* Scroll-reveal — paired with the IntersectionObserver in scripts/scroll-reveal.ts */
 .scroll-reveal {
   opacity: 0;
@@ -117,6 +133,7 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .fade-in,
+  .fade-in-scale,
   .scroll-reveal {
     opacity: 1;
     transform: none;

@@ -1,9 +1,17 @@
 ---
+const navLinks = [
+  { href: '/about', label: 'About the Retreat' },
+  { href: '/schedule', label: 'The Schedule' },
+  { href: '/science', label: 'The Science' },
+  { href: '/investment', label: 'Investment' },
+];
+
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 ---
 
 <header class="bg-nwprt-navy py-4 px-6 md:px-8 sticky top-0 z-50">
-  <div class="max-w-7xl mx-auto">
-    <a href="/" class="inline-block">
+  <div class="max-w-7xl mx-auto flex items-center justify-between gap-6">
+    <a href="/" class="inline-block shrink-0">
       <img
         src="/nwprt-logo-blue.jpeg"
         alt="NWPRT"
@@ -13,5 +21,47 @@
         height="66"
       />
     </a>
+
+    <nav class="hidden md:flex items-center gap-8">
+      {navLinks.map((link) => {
+        const isActive = currentPath === link.href;
+        return (
+          <a
+            href={link.href}
+            class:list={[
+              'text-sm transition-colors',
+              isActive ? 'text-nwprt-yellow' : 'text-nwprt-cream/80 hover:text-nwprt-yellow',
+            ]}
+          >
+            {link.label}
+          </a>
+        );
+      })}
+      <button
+        type="button"
+        data-open-application
+        class="bg-nwprt-yellow text-nwprt-navy caption px-6 py-3 tracking-[0.2em] hover:bg-nwprt-cream transition-colors duration-300"
+      >
+        Apply Now
+      </button>
+    </nav>
+
+    {/* Mobile: just the Apply Now CTA, since real estate is tight. Full nav lives in the footer. */}
+    <button
+      type="button"
+      data-open-application
+      class="md:hidden bg-nwprt-yellow text-nwprt-navy caption px-4 py-2 tracking-[0.2em] hover:bg-nwprt-cream transition-colors duration-300"
+    >
+      Apply
+    </button>
   </div>
 </header>
+
+<script>
+  /* Any element with [data-open-application] dispatches the open event for the modal. */
+  document.querySelectorAll<HTMLElement>('[data-open-application]').forEach((el) => {
+    el.addEventListener('click', () => {
+      window.dispatchEvent(new CustomEvent('openApplication'));
+    });
+  });
+</script>

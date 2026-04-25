@@ -100,112 +100,107 @@ export function Agenda() {
           initial={{ opacity: 0, y: 24 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="mb-12"
         >
-          <div className="caption text-nwprt-navy/50 mb-3">The four days</div>
-          <h2 className="display text-4xl md:text-6xl text-nwprt-navy mb-6">The Agenda</h2>
-          <div className="rule bg-nwprt-navy mb-2 opacity-40" />
-        </motion.div>
-
-        <div className="grid md:grid-cols-2 gap-12 lg:gap-16">
-          {scheduleData.map((schedule, colIndex) => (
-            <div key={schedule.day} className="space-y-12">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: colIndex * 0.1 }}
-              >
-                <div
-                  onClick={() => setExpandedDay(expandedDay === schedule.day ? null : schedule.day)}
-                  className="flex items-baseline gap-4 mb-6 pb-3 border-b border-nwprt-navy/15 cursor-pointer hover:border-nwprt-navy/30 transition-colors"
+          {/* Day by Day Schedule */}
+          <div className="grid md:grid-cols-2 gap-12 lg:gap-16">
+            {scheduleData.map((schedule, colIndex) => (
+              <div key={schedule.day} className="space-y-12">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: colIndex * 0.1 }}
                 >
-                  <h3 className="display text-2xl md:text-3xl text-nwprt-navy">{schedule.day}</h3>
-                  <span className="accent-italic text-nwprt-navy/60">{schedule.subtitle}</span>
-                </div>
-
-                {expandedDay === schedule.day && (
-                  <motion.ul
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    className="divide-y divide-nwprt-navy/10"
+                  <div
+                    onClick={() => setExpandedDay(expandedDay === schedule.day ? null : schedule.day)}
+                    className="flex items-baseline gap-4 mb-6 pb-3 border-b border-nwprt-navy/15 cursor-pointer hover:border-nwprt-navy/30 transition-colors"
                   >
-                    {schedule.items.map((item, index) => (
-                      <motion.li
-                        key={index}
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: index * 0.05 }}
-                        className="flex gap-4 py-3"
-                      >
-                        <div className="caption text-nwprt-navy/50 w-24 shrink-0 pt-[3px]">{item.time}</div>
-                        <div className="text-sm leading-relaxed text-nwprt-navy/85">
-                          <div>{item.description}</div>
-                          {item.badge && (
-                            <span className={`caption inline-block mt-2 px-2 py-1 ${item.badge.color} text-nwprt-navy`}>
-                              {item.badge.text}
-                            </span>
-                          )}
-                        </div>
-                      </motion.li>
-                    ))}
-                  </motion.ul>
-                )}
-              </motion.div>
-            </div>
-          ))}
-        </div>
+                    <h3 className="display text-2xl md:text-3xl text-nwprt-navy">{schedule.day}</h3>
+                    <span className="accent-italic text-nwprt-navy/60">{schedule.subtitle}</span>
+                  </div>
 
-        {/* Pods Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-20 pt-12 border-t border-nwprt-navy/15"
-        >
-          <div className="caption text-nwprt-navy mb-3">The Format</div>
-          <h3 className="display text-3xl md:text-4xl text-nwprt-navy mb-6">The Pod Model</h3>
-          <p className="text-base md:text-lg text-nwprt-navy/75 leading-relaxed mb-8 max-w-3xl">
-            Twenty-four women. Four expert tracks running simultaneously. You choose which pods you attend based on what matters most to you - not what someone else decided you needed. Your pod assignments are confirmed before you arrive so your experts are fully prepared for your conversation.
-          </p>
-
-          {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-            {[
-              { number: '24', label: 'Women' },
-              { number: '4', label: 'Expert Tracks' },
-              { number: '4-6', label: 'Per Pod' },
-              { number: 'You', label: 'Choose' },
-            ].map((stat, i) => (
-              <div key={stat.label} className="bg-white p-6 text-center border border-nwprt-navy/10">
-                <div className="display text-4xl md:text-5xl text-nwprt-navy">{stat.number}</div>
-                <div className="caption text-nwprt-navy/50 mt-2">{stat.label}</div>
+                  {expandedDay === schedule.day && (
+                    <motion.ul
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      className="divide-y divide-nwprt-navy/10"
+                    >
+                      {schedule.items.map((item, index) => (
+                        <motion.li
+                          key={index}
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: index * 0.05 }}
+                          className="flex gap-4 py-3"
+                        >
+                          <div className="caption text-nwprt-navy/50 w-24 shrink-0 pt-[3px]">{item.time}</div>
+                          <div className="text-sm leading-relaxed text-nwprt-navy/85">
+                            <div>{item.description}</div>
+                            {item.badge && (
+                              <span className={`caption inline-block mt-2 px-2 py-1 ${item.badge.color} text-nwprt-navy`}>
+                                {item.badge.text}
+                              </span>
+                            )}
+                          </div>
+                        </motion.li>
+                      ))}
+                    </motion.ul>
+                  )}
+                </motion.div>
               </div>
             ))}
           </div>
 
-          {/* Tracks */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {tracks.map((track, index) => (
-              <motion.div
-                key={track.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
-                className={`bg-white border border-nwprt-navy/10 p-6 border-t-2 ${track.color}`}
-              >
-                <div className="caption text-nwprt-navy/50 mb-2">{track.number}</div>
-                <h4 className="display text-xl text-nwprt-navy mb-3">{track.title}</h4>
-                <p className="text-sm text-nwprt-navy/70 leading-relaxed">{track.description}</p>
-              </motion.div>
-            ))}
-          </div>
-
-          <div className="mt-8 bg-nwprt-navy p-6 text-center">
-            <p className="accent-italic text-lg md:text-xl text-nwprt-cream">
-              Small groups. Prepared experts. Your data already on the table.
+          {/* Pods Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="mt-20 pt-12 border-t border-nwprt-navy/15"
+          >
+            <div className="caption text-nwprt-navy mb-3">The Format</div>
+            <h3 className="display text-3xl md:text-4xl text-nwprt-navy mb-6">The Pod Model</h3>
+            <p className="text-base md:text-lg text-nwprt-navy/75 leading-relaxed mb-8 max-w-3xl">
+              A group of like-minded women. Four expert tracks running simultaneously. You choose which pods you attend based on what matters most to you - not what someone else decided you needed. Your pod assignments are confirmed before you arrive so your experts are fully prepared for your conversation.
             </p>
-          </div>
+
+            {/* Stats */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
+              {[
+                { number: '4', label: 'Expert Tracks' },
+                { number: '4-6', label: 'Per Pod' },
+                { number: 'You', label: 'Choose' },
+              ].map((stat, i) => (
+                <div key={stat.label} className="bg-white p-6 text-center border border-nwprt-navy/10">
+                  <div className="display text-4xl md:text-5xl text-nwprt-navy">{stat.number}</div>
+                  <div className="caption text-nwprt-navy/50 mt-2">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+
+            {/* Tracks */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {tracks.map((track, index) => (
+                <motion.div
+                  key={track.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
+                  className={`bg-white border border-nwprt-navy/10 p-6 border-t-2 ${track.color}`}
+                >
+                  <div className="caption text-nwprt-navy/50 mb-2">{track.number}</div>
+                  <h4 className="display text-xl text-nwprt-navy mb-3">{track.title}</h4>
+                  <p className="text-sm text-nwprt-navy/70 leading-relaxed">{track.description}</p>
+                </motion.div>
+              ))}
+            </div>
+
+            <div className="mt-8 bg-nwprt-navy p-6 text-center">
+              <p className="accent-italic text-lg md:text-xl text-nwprt-cream">
+                Small groups. Prepared experts. Your data already on the table.
+              </p>
+            </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

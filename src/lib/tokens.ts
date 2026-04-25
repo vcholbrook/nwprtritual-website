@@ -14,7 +14,7 @@ export const BRAND_COLORS = {
 } as const;
 
 export const FONTS = {
-  display: "'Oswald', sans-serif",
-  body: "'Inter', sans-serif",
+  display: "'Cormorant Garamond', serif",
+  body: "'Lato', sans-serif",
   accent: "'Playfair Display', serif",
 } as const;

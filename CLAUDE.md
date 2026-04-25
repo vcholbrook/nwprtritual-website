@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Single-page website for **NWPRTritual** (domain: `www.nwprtritual.com`). Deployed as a fully static Astro build. This scaffold is intentionally minimal — one page, no CMS, no runtime. The real page design and artwork come from an HTML handoff that is still pending.
+Multi-page marketing site for **NWPRT Ritual** at `www.nwprtritual.com` — a 4-day Halo × NWPRT co-branded wellness retreat in Newport Beach. Deployed as a fully static Astro build. Five routes: `/`, `/about`, `/schedule`, `/science`, `/investment`. Application form lives in a global modal triggered from any "Apply" button.
 
 ## Commands
 
@@ -57,12 +57,20 @@ The turnover uses the **same brand tokens** this project already defines (`--col
 
 Artwork (logos, photography) lives at `figma-turnover/_design_documentation/`. Copy into `public/` when a section references an image.
 
-### Component layout
-- `src/components/SiteHeader.astro` — sticky navy header with logo.
-- `src/components/sections/*.astro` — one file per page section, imported flat into `src/pages/index.astro`. Content data (arrays, schedules, copy) lives inline at the top of each section file so copy tweaks don't require diving into components.
-- `src/scripts/scroll-reveal.ts` — the IntersectionObserver island wired from `index.astro` via `<script>import '../scripts/scroll-reveal.ts'</script>`.
+### Layout
+- `src/layouts/BaseLayout.astro` — wraps every page. Mounts `SiteHeader`, `SiteFooter`, `ApplicationModal`, and the scroll-reveal island. Header/footer can be opted out with `showHeader={false}` / `showFooter={false}` props.
+- `src/components/SiteHeader.astro` — sticky navy header with logo + nav (About / Schedule / Science / Investment) + Apply Now CTA. Active link is rendered yellow based on `Astro.url.pathname`.
+- `src/components/SiteFooter.astro` — 3-column navy footer (brand mark + tagline / quick links / contact + Apply Now).
+- `src/components/PageHero.astro` — shared navy band used as the top of every sub-page. Props: `eyebrow`, `title`, `tagline`.
+- `src/components/ApplicationModal.astro` — native `<dialog>`-based application form. Listens for `openApplication` window custom event. Submission is **stubbed** (logs to console + shows success state) — search for `TODO: replace this stub` in the file when wiring the real Slack + Notion integration.
+- `src/components/sections/*.astro` — one file per page section. Content data (arrays, schedules, copy) lives inline at the top of each section file so copy tweaks don't require diving into components.
+- `src/pages/*.astro` — one Astro page per route. Composes `BaseLayout` + `PageHero` (when applicable) + the relevant section components.
+- `src/scripts/scroll-reveal.ts` — the IntersectionObserver island. Imported once from `BaseLayout` so it runs on every page.
 
-Interactive elements (e.g., the Agenda accordion) use native HTML primitives (`<details>`) first, with small vanilla JS scripts to add progressive enhancements. No React / no framework — keep it boring.
+### Apply Now triggers
+Any element with `data-open-application` (or any explicit `window.dispatchEvent(new CustomEvent('openApplication'))` call) opens the modal. The header, footer, and `FinalCTA` all use this. When wiring future entry points (banner, page-level CTAs, etc.), use the same `data-open-application` attribute — the wiring script in `SiteHeader.astro` already handles delegation.
+
+Interactive elements (Agenda accordion, application modal) use native HTML primitives (`<details>`, `<dialog>`) first, with small vanilla JS scripts to add progressive enhancements. No React / no framework — keep it boring.
 
 When porting handoff HTML or Figma to `.astro`, **do not inline arbitrary hex values or arbitrary Tailwind values** (`bg-[#...]`, `text-[17px]`) just because the source uses them. Snap to the `--color-nwprt-*` tokens; if a value isn't close to anything, surface it and ask before extending.
 
