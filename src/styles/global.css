@@ -1,5 +1,13 @@
-/* Fonts are loaded via <link> tags in BaseLayout.astro, with preconnect
-   hints, so the font CSS download isn't chained behind this stylesheet. */
+/* Self-hosted via Fontsource — woff2 files get emitted to /_astro/ at
+   build time and served from our own origin. No Google Fonts DNS lookup,
+   no third-party render-blocking, long cache TTL handled by Cloudflare. */
+@import "@fontsource/lato/400.css";
+@import "@fontsource/lato/700.css";
+@import "@fontsource/cormorant-garamond/500.css";
+@import "@fontsource/cormorant-garamond/700.css";
+@import "@fontsource/playfair-display/400-italic.css";
+@import "@fontsource/playfair-display/500-italic.css";
+
 @import "tailwindcss";
 
 @theme {
