@@ -1,15 +1,24 @@
 ---
+import { Image } from 'astro:assets';
+import heroBg from '../../assets/nwprt-lifestyle-1.jpg';
+import heroLogo from '../../assets/nwprt-logo-navy.png';
 ---
 
 <section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-nwprt-navy text-nwprt-cream">
-  {/* Background image with navy wash */}
+  {/* Background image with navy wash. fetchpriority="high" makes this
+      the LCP candidate; Astro's pipeline emits a WebP-first srcset. */}
   <div class="absolute inset-0">
-    <img
-      src="/nwprt-lifestyle-1.jpg"
+    <Image
+      src={heroBg}
       alt=""
       aria-hidden="true"
       class="w-full h-full object-cover opacity-30"
       loading="eager"
+      fetchpriority="high"
+      widths={[768, 1280, 1920]}
+      sizes="100vw"
+      format="webp"
+      quality={70}
     />
     <div class="absolute inset-0 bg-nwprt-navy/60"></div>
   </div>
@@ -19,12 +28,13 @@
     <div class="caption text-nwprt-yellow mb-8">Newport Beach, California</div>
 
     <div class="flex justify-center mb-6 fade-in-scale">
-      <img
-        src="/nwprt-logo-navy.png"
+      <Image
+        src={heroLogo}
         alt="NWPRT"
         class="w-64 md:w-96 lg:w-[500px] h-auto opacity-50"
-        width="3803"
-        height="1384"
+        widths={[256, 384, 500, 1000]}
+        sizes="(min-width: 1024px) 500px, (min-width: 768px) 384px, 256px"
+        format="webp"
         loading="eager"
       />
     </div>

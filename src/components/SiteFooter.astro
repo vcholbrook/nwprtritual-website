@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import footerLogo from '../assets/footer-nwprt-logo-navy.png';
+
 const navLinks = [
   { href: '/about', label: 'About the Retreat' },
   { href: '/schedule', label: 'The Schedule' },
@@ -15,12 +18,13 @@ const year = new Date().getFullYear();
       {/* Brand */}
       <div class="text-center">
         <a href="/">
-          <img
-            src="/nwprt-logo-navy.png"
+          <Image
+            src={footerLogo}
             alt="NWPRT"
             class="w-28 md:w-32 opacity-70 mb-2 mx-auto h-auto"
-            width="3803"
-            height="1384"
+            widths={[112, 128, 256]}
+            sizes="(min-width: 768px) 128px, 112px"
+            format="webp"
             loading="lazy"
           />
         </a>

@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import edenImage from '../../assets/nwprt-eden.jpg';
+
 const stats = [
   { number: '4', label: 'Days of Transformation', kind: 'text' },
   { number: '1', label: 'Woman at the Center · You', kind: 'text' },
@@ -35,12 +38,14 @@ const stats = [
       </div>
 
       <div class="scroll-reveal relative">
-        <img
-          src="/nwprt-eden.jpg"
+        <Image
+          src={edenImage}
           alt="Walking the Newport Beach pier"
           class="w-full h-auto rounded-lg"
-          width="1200"
-          height="1600"
+          widths={[400, 600, 900]}
+          sizes="(min-width: 1024px) 30vw, 100vw"
+          format="webp"
+          quality={75}
           loading="lazy"
         />
       </div>

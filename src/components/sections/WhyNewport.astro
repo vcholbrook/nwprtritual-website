@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import beachImage from '../../assets/nwprt-beachlife.jpg';
+
 const locations = [
   {
     title: 'Newport Harbor',
@@ -29,14 +32,16 @@ const locations = [
 
 <section class="relative bg-white text-nwprt-navy py-20 md:py-28 overflow-hidden">
   <div class="absolute inset-0">
-    <img
-      src="/nwprt-beachlife.jpg"
+    <Image
+      src={beachImage}
       alt=""
       aria-hidden="true"
       class="w-full h-full object-cover"
       loading="lazy"
-      width="1200"
-      height="630"
+      widths={[768, 1280, 1920]}
+      sizes="100vw"
+      format="webp"
+      quality={70}
     />
     <div class="absolute inset-0 bg-white/85"></div>
   </div>
