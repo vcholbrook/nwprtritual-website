@@ -14,7 +14,7 @@ const year = new Date().getFullYear();
 
 <footer class="bg-nwprt-navy text-nwprt-cream py-12 md:py-16">
   <div class="max-w-7xl mx-auto w-full px-4 md:px-8">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 mb-8 items-start">
       {/* Brand */}
       <div class="text-center">
         <a href="/">
@@ -34,38 +34,41 @@ const year = new Date().getFullYear();
         </p>
       </div>
 
-      {/* Quick Links */}
-      <div class="md:text-right">
-        <h3 class="caption text-nwprt-yellow mb-4">Quick Links</h3>
-        <ul class="space-y-2 text-sm">
-          {navLinks.map((link) => (
-            <li>
-              <a href={link.href} class="text-nwprt-cream/70 hover:text-nwprt-yellow transition-colors">
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
+      {/* Right pair: Quick Links + Connect, hugged together and right-flushed. */}
+      <div class="grid grid-cols-2 gap-8 md:gap-10 md:text-right">
+        {/* Quick Links */}
+        <div>
+          <h3 class="caption text-nwprt-yellow mb-4">Quick Links</h3>
+          <ul class="space-y-2 text-sm">
+            {navLinks.map((link) => (
+              <li>
+                <a href={link.href} class="text-nwprt-cream/70 hover:text-nwprt-yellow transition-colors">
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-      {/* Connect */}
-      <div class="md:text-right">
-        <h3 class="caption text-nwprt-yellow mb-4">Connect</h3>
-        <div class="space-y-3">
-          <p class="text-sm text-nwprt-cream/70">Newport Beach, California</p>
-          <a
-            href="mailto:ritual@gethalohealth.com"
-            class="text-sm text-nwprt-cream/70 hover:text-nwprt-yellow transition-colors block"
-          >
-            ritual@gethalohealth.com
-          </a>
-          <button
-            type="button"
-            data-open-application
-            class="bg-nwprt-yellow text-nwprt-navy caption px-6 py-3 tracking-[0.2em] hover:bg-nwprt-cream transition-colors duration-300"
-          >
-            Apply Now
-          </button>
+        {/* Connect */}
+        <div>
+          <h3 class="caption text-nwprt-yellow mb-4">Connect</h3>
+          <div class="space-y-3">
+            <p class="text-sm text-nwprt-cream/70">Newport Beach, California</p>
+            <a
+              href="mailto:ritual@gethalohealth.com"
+              class="text-sm text-nwprt-cream/70 hover:text-nwprt-yellow transition-colors block"
+            >
+              ritual@gethalohealth.com
+            </a>
+            <button
+              type="button"
+              data-open-application
+              class="bg-nwprt-yellow text-nwprt-navy caption px-6 py-3 tracking-[0.2em] hover:bg-nwprt-cream transition-colors duration-300"
+            >
+              Apply Now
+            </button>
+          </div>
         </div>
       </div>
     </div>
