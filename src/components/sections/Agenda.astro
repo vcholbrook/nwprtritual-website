@@ -73,7 +73,6 @@ const schedule: DaySchedule[] = [
 ];
 
 const podStats = [
-  { number: '24', label: 'Women' },
   { number: '4', label: 'Expert Tracks' },
   { number: '4–6', label: 'Per Pod' },
   { number: 'You', label: 'Choose' },
@@ -152,12 +151,13 @@ const tracks = [
       <div class="caption text-nwprt-navy mb-3">The Format</div>
       <h3 class="display text-3xl md:text-4xl text-nwprt-navy mb-6">The Pod Model</h3>
       <p class="text-base md:text-lg text-nwprt-navy/75 leading-relaxed mb-8 max-w-3xl">
-        Twenty-four women. Four expert tracks running simultaneously. You choose which pods you attend
-        based on what matters most to you &mdash; not what someone else decided you needed. Your pod
-        assignments are confirmed before you arrive so your experts are fully prepared for your conversation.
+        A group of like-minded women. Four expert tracks running simultaneously. You choose which pods
+        you attend based on what matters most to you &mdash; not what someone else decided you needed.
+        Your pod assignments are confirmed before you arrive so your experts are fully prepared for your
+        conversation.
       </p>
 
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
         {podStats.map((stat) => (
           <div class="bg-white p-6 text-center border border-nwprt-navy/10">
             <div class="display text-4xl md:text-5xl text-nwprt-navy">{stat.number}</div>
