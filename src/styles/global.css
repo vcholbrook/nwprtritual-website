@@ -1,12 +1,16 @@
-/* Self-hosted via Fontsource — woff2 files get emitted to /_astro/ at
-   build time and served from our own origin. No Google Fonts DNS lookup,
-   no third-party render-blocking, long cache TTL handled by Cloudflare. */
-@import "@fontsource/lato/400.css";
-@import "@fontsource/lato/700.css";
-@import "@fontsource/cormorant-garamond/500.css";
-@import "@fontsource/cormorant-garamond/700.css";
-@import "@fontsource/playfair-display/400-italic.css";
-@import "@fontsource/playfair-display/500-italic.css";
+/* Self-hosted via Fontsource. Latin subset only — covers ASCII, common
+   punctuation (curly quotes, en/em dashes, ellipsis), and the ™ glyph,
+   which is everything our copy uses. Skipping cyrillic / vietnamese /
+   latin-ext shaves the @font-face declarations in the bundled CSS by
+   ~75% and only those subsets contained references to fonts we never
+   download in English contexts anyway. If we ever need accented Latin,
+   re-add the latin-ext-* imports. */
+@import "@fontsource/lato/latin-400.css";
+@import "@fontsource/lato/latin-700.css";
+@import "@fontsource/cormorant-garamond/latin-500.css";
+@import "@fontsource/cormorant-garamond/latin-700.css";
+@import "@fontsource/playfair-display/latin-400-italic.css";
+@import "@fontsource/playfair-display/latin-500-italic.css";
 
 @import "tailwindcss";
 
