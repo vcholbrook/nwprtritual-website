@@ -82,9 +82,19 @@
             class="w-full px-4 py-3 border border-nwprt-navy/20 focus:border-nwprt-navy focus:outline-none bg-white resize-none"></textarea>
         </div>
 
-        <button type="submit"
-          class="w-full bg-nwprt-yellow text-nwprt-navy caption px-8 py-4 tracking-[0.2em] hover:bg-nwprt-navy hover:text-nwprt-yellow transition-colors duration-300">
-          Submit Application
+        <p
+          data-modal-error
+          class="hidden text-sm text-nwprt-red border-l-2 border-nwprt-red pl-3 mb-2"
+          role="alert"
+        ></p>
+
+        <button
+          type="submit"
+          data-modal-submit
+          class="w-full bg-nwprt-yellow text-nwprt-navy caption px-8 py-4 tracking-[0.2em] hover:bg-nwprt-navy hover:text-nwprt-yellow transition-colors duration-300 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:bg-nwprt-yellow disabled:hover:text-nwprt-navy"
+        >
+          <span data-submit-label>Submit Application</span>
+          <span data-submit-loading class="hidden">Submitting&hellip;</span>
         </button>
       </form>
     </div>
@@ -115,10 +125,30 @@
   const formView = dialog?.querySelector<HTMLElement>('[data-modal-form]');
   const successView = dialog?.querySelector<HTMLElement>('[data-modal-success]');
   const form = dialog?.querySelector<HTMLFormElement>('[data-application-form]');
+  const submitBtn = dialog?.querySelector<HTMLButtonElement>('[data-modal-submit]');
+  const submitLabel = dialog?.querySelector<HTMLElement>('[data-submit-label]');
+  const submitLoading = dialog?.querySelector<HTMLElement>('[data-submit-loading]');
+  const errorEl = dialog?.querySelector<HTMLElement>('[data-modal-error]');
+
+  const setLoading = (loading: boolean) => {
+    if (submitBtn) submitBtn.disabled = loading;
+    submitLabel?.classList.toggle('hidden', loading);
+    submitLoading?.classList.toggle('hidden', !loading);
+  };
+
+  const showError = (msg: string) => {
+    if (!errorEl) return;
+    errorEl.textContent = msg;
+    errorEl.classList.remove('hidden');
+  };
+
+  const clearError = () => errorEl?.classList.add('hidden');
 
   const reset = () => {
     if (formView) formView.classList.remove('hidden');
     if (successView) successView.classList.add('hidden');
+    clearError();
+    setLoading(false);
     form?.reset();
   };
 
@@ -142,15 +172,33 @@
 
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
+    if (!form) return;
+
+    clearError();
+    setLoading(true);
+
     const data = Object.fromEntries(new FormData(form).entries());
 
-    // TODO: replace this stub with a POST to a Cloudflare Pages Function that
-    // fans out to the Slack #nwprt-ritual-applications webhook + the Notion
-    // applications database. For now, we just log + show success.
-    console.log('[NWPRT application]', data);
+    try {
+      const res = await fetch('/api/apply', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
 
-    if (formView) formView.classList.add('hidden');
-    if (successView) successView.classList.remove('hidden');
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        throw new Error(body?.error || 'Something went wrong. Please try again.');
+      }
+
+      if (formView) formView.classList.add('hidden');
+      if (successView) successView.classList.remove('hidden');
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : 'Something went wrong. Please try again.';
+      showError(msg);
+    } finally {
+      setLoading(false);
+    }
   });
 </script>
 

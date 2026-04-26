@@ -70,6 +70,17 @@ Artwork (logos, photography) lives at `figma-turnover/_design_documentation/`. C
 ### Apply Now triggers
 Any element with `data-open-application` (or any explicit `window.dispatchEvent(new CustomEvent('openApplication'))` call) opens the modal. The header, footer, and `FinalCTA` all use this. When wiring future entry points (banner, page-level CTAs, etc.), use the same `data-open-application` attribute — the wiring script in `SiteHeader.astro` already handles delegation.
 
+### Application form pipeline
+The modal POSTs to `/api/apply` (a Cloudflare Pages Function at `functions/api/apply.ts`). The Function validates required fields, then creates a row in the **NWPRT Ritual Customer Interest** Notion database. Optional Slack fan-out fires when `SLACK_APPLICATIONS_WEBHOOK` is set (currently unset — wire that up when the channel + webhook URL exist).
+
+Env vars (set as Cloudflare Pages production secrets via `wrangler pages secret put`):
+- `NOTION_API_KEY` — Notion integration token. The integration must be invited to the database from Notion's UI (`...` → `+ Add connections`).
+- `NOTION_CUSTOMER_DATABASE_ID` — target database ID.
+
+Local dev: copy these same vars into `.dev.vars` (gitignored). `npx wrangler pages dev dist --port 8788` runs the Function alongside the static site.
+
+Schema management: `scripts/setup-notion-schema.mjs` is idempotent — re-run it after any property changes you want to enforce. The current schema is: `Name` (title), `Email`, `Phone`, `Location`, `Goals`, `Experience`, `Status` (select with New/Reviewing/Approved/Waitlisted/Declined), `Submitted` (created_time). The Function always creates rows with `Status = New`.
+
 Interactive elements (Agenda accordion, application modal) use native HTML primitives (`<details>`, `<dialog>`) first, with small vanilla JS scripts to add progressive enhancements. No React / no framework — keep it boring.
 
 When porting handoff HTML or Figma to `.astro`, **do not inline arbitrary hex values or arbitrary Tailwind values** (`bg-[#...]`, `text-[17px]`) just because the source uses them. Snap to the `--color-nwprt-*` tokens; if a value isn't close to anything, surface it and ask before extending.
