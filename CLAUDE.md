@@ -22,8 +22,10 @@ Node ≥22.12 required (see `package.json#engines`).
 
 ## Architecture
 
-### Fully static, one page
-Deliberately **fully static**. No adapter, no functions, no runtime dynamic routes. If a future requirement tempts you toward SSR, Node/Cloudflare adapter, or Astro endpoints, surface that first — the default stance is that there is nothing to break at request time.
+### Static pages + one Cloudflare Pages Function
+Astro emits 5 static pages (`/`, `/about`, `/schedule`, `/science`, `/investment`); zero Astro endpoints, no Astro server adapter. The single piece of runtime code lives at `functions/api/apply.ts` — a Cloudflare Pages Function that handles the application form POST and writes to Notion. Pages Functions deploy alongside `dist/` via `wrangler pages deploy`.
+
+If a future requirement tempts you to add Astro server-side rendering or another runtime route, surface that first — the default stance is to keep additional runtime surface area in `functions/` rather than reaching for the Astro adapter.
 
 ### Brand system — NWPRT aesthetic
 
